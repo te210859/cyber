@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サイバー攻撃とは？</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      header h1 {
+        font-size: 2em;
+        margin: 0;
+      }
+      .content {
+        font-size: 1.2em;
+        color: #333;
+        text-align: center;
+      }
+
+      .content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 20px 0;
+      }
+
+      /* ページネーションのスタイル */
+      .pagination {
+        display: flex;
+        justify-content: center; /* 中央に配置 */
+        margin-top: 20px;
+      }
+
+      .pagination a {
+        padding: 10px 15px;
+        margin: 0 5px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* ホバー時のスタイル */
+      .pagination a:hover {
+        background-color: #0056b3;
+      }
+
+      /* 最初のページと前のページの矢印 */
+      .prev-next-button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
+
+      .prev-next-button:hover {
+        background-color: #0056b3;
+      }
+
+      .next-page-button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        max-width: fit-content;
+      }
+      .content {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        max-width: fit-content;
+      }
+
+      /* インスクロール広告のスタイル (下部) */
+      #ad-banner {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ff9900;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 1.2em;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+
+      /* Xボタンのスタイル (下部広告) */
+      #ad-banner .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        color: white;
+        font-size: 1.5em;
+        border: none;
+        cursor: pointer;
+      }
+
+      .spam {
+        color: blue;
+      }
+
+      /* 広告を表示する条件 */
+      #ad-banner.visible {
+        display: block;
+      }
+
+      /* サイドバー固定広告のスタイル */
+      #sidebar-ad {
+        display: block;
+        position: fixed;
+        top: 100px;
+        right: 0;
+        width: 250px;
+        background-color: #ff9900;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        font-size: 1.2em;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        border-radius: 10px 0 0 10px; /* 角を丸くする */
+      }
+
+      /* Xボタンのスタイル (サイドバー広告) */
+      #sidebar-ad .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        color: white;
+        font-size: 1.5em;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* ポップアップ広告のスタイル */
+      #popup-ad {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        max-width: 600px;
+        background-color: #ff9900;
+        color: white;
+        text-align: center;
+        padding: 30px;
+        font-size: 1.5em;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+      }
+
+      /* Xボタンのスタイル (ポップアップ広告) */
+      #popup-ad .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        color: white;
+        font-size: 1.5em;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>サイバー攻撃とは？</h1>
+      </header>
+      <div class="content">
+        <h2>サイバー攻撃の概要</h2>
+        <p>
+          サイバー攻撃は、コンピュータやネットワークシステムに対する不正アクセスや悪意のある行為を指します。これには、個人情報の盗難、システムの破壊、企業の機密情報の漏洩、さらには国家の安全を脅かす攻撃が含まれます。サイバー攻撃は急速に進化しており、攻撃者は高度な技術を駆使して企業や政府機関、個人を狙っています。
+        </p>
+
+        <h2>代表的なサイバー攻撃の種類</h2>
+        <ul>
+          <li>
+            <strong>フィッシング：</strong
+            >偽のWebサイトやメールを使用して、個人情報やクレジットカード情報を盗む攻撃。
+          </li>
+          <li>
+            <strong>ランサムウェア：</strong
+            >データを暗号化し、その解放のために身代金を要求する攻撃。
+          </li>
+          <li>
+            <strong>サービス拒否攻撃（DDoS攻撃）：</strong
+            >ネットワークやサーバを過負荷にしてサービスを停止させる攻撃。
+          </li>
+        </ul>
+
+        <h2>サイバーセキュリティ対策</h2>
+        <p>
+          サイバー攻撃に対抗するためには、強固なサイバーセキュリティ対策が必要です。パスワードの管理や、二要素認証、定期的なソフトウェアの更新が効果的な手段となります。企業や個人は、攻撃を未然に防ぐために積極的に対策を講じる必要があります。
+        </p>
+
+        <p>
+          万が一の攻撃に備えて、バックアップや復旧計画を整えておくことも重要です。
+        </p>
+
+        <img src="次ぺ.png" alt="次のページへ画像" />
+
+        <a href="next_page.html" class="next-page-button">次のページへ > </a>
+      </div>
+
+      <!-- ページネーション -->
+      <div class="pagination">
+        <!-- 前のページボタン -->
+        <a href="previous_page.html" class="prev-next-button"
+          >&lt; 前のページ</a
+        >
+
+        <!-- ページ番号 -->
+        <a href="page1.html" class="page-button">1</a>
+        <a href="page2.html" class="page-button">2</a>
+        <a href="page3.html" class="page-button">3</a>
+        <a href="page4.html" class="page-button">4</a>
+        <a href="page5.html" class="page-button">5</a>
+
+        <!-- 次のページボタン -->
+        <a href="next_page.html" class="prev-next-button">次のページ &gt;</a>
+      </div>
+
+      <div class="content">
+        <img src="次ぺ.png" alt="次のページへの画像" />
+      </div>
+    </div>
+
+    <!-- インスクロール広告 -->
+    <div id="ad-banner">
+      <button class="close-btn" onclick="closeAd()">×</button>
+      <p>
+        このページはサイバー攻撃に関する情報を提供しています。セキュリティの向上をお考えなら、<a
+          href="next_page.html"
+          class="spam"
+          >次のページ</a
+        >をご覧ください！
+      </p>
+    </div>
+
+    <!-- サイドバー広告 -->
+    <div id="sidebar-ad">
+      <button class="close-btn" onclick="closeSidebarAd()">×</button>
+      <p>
+        セキュリティ強化のために、<a href="next_page.html" class="spam"
+          >次のページ</a
+        >をご覧ください！
+      </p>
+    </div>
+
+    <!-- ポップアップ広告 -->
+    <div id="popup-ad">
+      <button class="close-btn" onclick="closePopupAd()">×</button>
+      <p>
+        今すぐ次のページでさらに詳しい情報を見てください！
+        <a href="next_page.html" class="spam">次のページ</a>
+      </p>
+    </div>
+
+    <script>
+      // インスクロール広告表示
+      window.onscroll = function () {
+        var scrollPosition =
+          window.scrollY || document.documentElement.scrollTop;
+        if (scrollPosition > 500) {
+          document.getElementById('ad-banner').classList.add('visible');
+        }
+      };
+
+      // 広告を閉じる
+      function closeAd() {
+        document.getElementById('ad-banner').style.display = 'none';
+      }
+
+      function closeSidebarAd() {
+        document.getElementById('sidebar-ad').style.display = 'none';
+      }
+
+      function closePopupAd() {
+        document.getElementById('popup-ad').style.display = 'none';
+      }
+
+      // ページ読み込み後にポップアップを表示
+      window.onload = function () {
+        setTimeout(function () {
+          document.getElementById('popup-ad').style.display = 'block';
+        }, 2000); // ページロードから2秒後に表示
+      };
+    </script>
+  </body>
+</html>
