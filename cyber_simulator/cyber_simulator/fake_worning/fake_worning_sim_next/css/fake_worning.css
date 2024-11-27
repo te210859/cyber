@@ -2,16 +2,16 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
-    padding: 0;
+    padding-top: 120px;
     background-color: #f4f4f4;
   }
   
   .container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(24, 12, 12, 0.1);
   }
   
   header {
@@ -83,6 +83,7 @@ body {
     margin-right: auto;
     width: 50%;
     max-width: fit-content;
+    text-align: center;
   }
   
   .content {
@@ -100,8 +101,8 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #ff9900;
-    color: white;
+    background-color: #000000;
+    color: rgb(255, 0, 0);
     text-align: center;
     padding: 10px 0;
     font-size: 1.2em;
@@ -137,8 +138,8 @@ body {
     top: 100px;
     right: 0;
     width: 250px;
-    background-color: #ff9900;
-    color: white;
+    background-color: #000000;
+    color: rgb(255, 0, 0);
     text-align: center;
     padding: 20px;
     font-size: 1.2em;
@@ -168,8 +169,8 @@ body {
     transform: translate(-50%, -50%);
     width: 70%;
     max-width: 600px;
-    background-color: #ff9900;
-    color: white;
+    background-color: #000000;
+    color: rgb(255, 0, 0);
     text-align: center;
     padding: 30px;
     font-size: 1.5em;
@@ -189,4 +190,258 @@ body {
     border: none;
     cursor: pointer;
   }
+
+  .center:hover{
+    background-color: #0056b3;
+  }
+
+  .oya{
+    top: 20px;
+  }
   
+
+  
+  /*へっだーーーーーーーー*/
+ /* Reset and Font Imports */
+@import url(https://reset5.googlecode.com/hg/reset.min.css);
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px|Open+Sans);
+
+/* Variables (CSS doesn't support variables like SCSS) */
+body {
+
+
+  background: #b3b3b3;
+  height: 1500px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
+  background: rgba(53, 41, 107, 0.8);
+  -webkit-transition: height 0.3s;
+  -moz-transition: height 0.3s;
+  transition: height 0.3s;
+  justify-content: flex-start; /* 要素を左に寄せる */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 影をつける */
+}
+
+.header .wrap {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 69em;
+}
+
+.header h1,
+.header .menu {
+  display: inline-block;
+  position: relative;
+}
+
+.header h1,
+.header .menu a {
+  line-height: 140px;
+}
+
+.header h1 {
+  float: left;
+  margin: 0;
+  color: #ff1100;
+  font-family: 'Slabo 27px', serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  padding:1px 1px;
+}
+
+
+
+.header .menu {
+  float: right;
+}
+
+.header .menu a {
+  font-size: 20px;
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  position: relative; /* 擬似要素の位置を指定するため */
+  padding-bottom: 4px; /* 下線との余白を調整 */
+}
+
+/* ホバー時に下線が表示される設定 */
+a::after {
+  content: ''; /* 擬似要素のコンテンツ */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px; /* 下線の高さを小さくする */
+  background-color: #ffffff; /* 下線の色 */
+  transform: scaleX(0); /* 初期状態では下線は表示されない */
+  transform-origin: bottom right; /* 右端から左に伸びる */
+  transition: transform 0.3s ease; /* アニメーションの設定 */
+}
+
+/* ホバー時のアニメーション */
+a:hover::after {
+  transform: scaleX(1); /* 下線を全体に広げる */
+  transform-origin: bottom left; /* 左端から右に伸びる */
+}
+
+.header .menu a:last-of-type {
+  margin-right: 0;
+}
+
+/* Shrinking */
+.header h1,
+.header nav a {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.header.shrink {
+  height: 90px;
+  color:black;
+  /*background: rgba(173, 172, 172, 0.8);*/
+  background:white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 影をつける */
+}
+
+.header.shrink h1{
+  line-height: 90px;
+  color:#ff0000;
+}
+.header.shrink nav a {
+  line-height: 90px;
+  color:black
+}
+/* ホバー時に下線が表示される設定 */
+.header.shrink a::after {
+  content: ''; /* 擬似要素のコンテンツ */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px; /* 下線の高さを小さくする */
+  background-color: #000000; /* 下線の色 */
+  transform: scaleX(0); /* 初期状態では下線は表示されない */
+  transform-origin: bottom right; /* 右端から左に伸びる */
+  transition: transform 0.3s ease; /* アニメーションの設定 */
+}
+
+/* ホバー時のアニメーション */
+.header.shrink a:hover::after {
+  transform: scaleX(1); /* 下線を全体に広げる */
+  transform-origin: bottom left; /* 左端から右に伸びる */
+}
+
+.header .menu a:last-of-type {
+  margin-right: 0;
+}
+
+.header.shrink h1 {
+  font-size: 2em;
+}
+
+
+
+
+
+/*ふっだーーーーーー*/
+
+html {
+  font-family: sans-serif;
+}
+
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: #4b5564;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer {
+  padding: 2rem;
+  padding-top: 20px;
+  font-size: 15px;
+  color: #7a7a7a;
+  background: #cfcfcf;
+}
+
+.footer__navi-heading {
+  font-weight: 600;
+}
+
+.footer__logo {
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.footer__navi li {
+  margin-bottom: 0.75rem;
+}
+
+.footer__social a {
+  display: inline-block;
+  width: 24px;
+  opacity: 0.7;
+}
+
+.footer__social a:not(:last-child) {
+  margin-right: 16px;
+}
+
+@media (min-width: 768px) {
+  .md-flex {
+    display: flex;
+  }
+
+  .md-justify-between {
+    justify-content: space-between;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+
+
+h1.makino {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #000000;
+}
+
+h1.makino2 {
+  font-family: "Zen Old Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ff0000;
+}

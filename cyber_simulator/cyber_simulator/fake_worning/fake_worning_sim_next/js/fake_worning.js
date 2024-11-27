@@ -42,3 +42,15 @@ window.onscroll = function () {
   function showMessage() {
     alert('成功！偽広告を踏むパターンも試してみてね！');
   }
+
+// スクロールイベントを監視
+window.addEventListener('scroll', function() {
+  // ドキュメントのスクロール位置が150pxを超えた場合
+  if (document.documentElement.scrollTop > 150 || document.body.scrollTop > 150) {
+    // headerに"shrink"クラスを追加
+    document.querySelector('header').classList.add('shrink');
+  } else {
+    // headerから"shrink"クラスを削除
+    document.querySelector('header').classList.remove('shrink');
+  }
+});
