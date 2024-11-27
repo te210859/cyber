@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>自然災害について</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/fake_worning.css" />
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,8 @@
             自然災害に関する最新情報を確認するために、以下のボタンをクリックしてください。
           </p>
           <button
-            onclick="window.location.href='https://www.jma.go.jp/jma/index.html'"
-          >
-            気象庁公式サイトへ
+            onclick="showMessage()">
+            開く
           </button>
         </div>
       </div>
@@ -70,22 +69,22 @@
 
     <!-- 左側に固定された画像広告 -->
     <div id="left-sidebar-ad">
-      <img src="自然.png" alt="左側広告" />
-      <button class="close-btn" onclick="closeAd('left-sidebar-ad')">×</button>
+      <img src="png/自然.png" alt="左側広告" />
+      <button class="close-btn1" onclick="closeAd('left-sidebar-ad')">×</button>
     </div>
 
     <!-- 右側に固定された画像広告 -->
     <div id="sidebar-ad">
-      <img src="Open.png" alt="右側広告" />
-      <button class="close-btn" onclick="closeAd('sidebar-ad')">×</button>
+      <img src="png/健康.png" alt="右側広告" />
+      <button class="close-btn1" onclick="closeAd('sidebar-ad')">×</button>
     </div>
 
     <!-- 下部固定画像広告 -->
     <div id="bottom-ad">
       <button class="close-btn" onclick="closeAd('bottom-ad')">×</button>
-      <img src="浸水.png" alt="下側広告" />
+      <img src="png/浸水.png" alt="下側広告" />
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="js/fake_worning.js"></script>
   </body>
 </html>

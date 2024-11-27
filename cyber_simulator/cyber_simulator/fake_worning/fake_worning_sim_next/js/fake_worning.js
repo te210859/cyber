@@ -38,3 +38,7 @@ window.onscroll = function () {
     }, 2000); // 2秒後にポップアップを表示
   };
   
+
+  function showMessage() {
+    alert('成功！偽広告を踏むパターンも試してみてね！');
+  }

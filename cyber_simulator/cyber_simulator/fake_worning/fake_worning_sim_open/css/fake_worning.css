@@ -168,12 +168,22 @@ body {
   }
   
   /* 閉じるボタン */
-  .close-btn {
+  .close-btn1 {
     position: absolute;
     top: 10px;
     right: 10px;
     background-color: transparent;
-    color: white;
+    color: rgb(255, 255, 255);
+    font-size: 2.0em;
+    border: none;
+    cursor: pointer;
+  }
+  .close-btn {
+    position: sticky;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(223, 221, 221);
+    color: rgb(180, 180, 180);
     font-size: 1.5em;
     border: none;
     cursor: pointer;
