@@ -1,52 +1,207 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/fake_worning.css">
-    <title>タイトル</title>
-  </head>
-  <body>
-    <header>
-        <nav>
-            <ul>
-              <li><a href="#section1">セクション 1</a></li>
-              <li><a href="#section2">セクション 2</a></li>
-              <li><a href="#section3">セクション 3</a></li>
-            </ul>
-          </nav>
-    </header>
-    <div class="container">
-      <div class="side">
-        <h3>h3の目次</h3>
-        <ul>
-          <li>home</li>
-          <li>問い合わせ</li>
-        </ul>
-        
+<head>
+  <meta charset="UTF-8">
+  <title>タイトル</title>
+  <style>
+    /* 全体のレイアウト設定 */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column; /* 上から下へのレイアウト */
+      min-height: 100vh; /* ページ全体の高さを占める */
+    }
+
+    /* ヘッダー */
+    header {
+      background-color: red;
+      color: yellow;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* コンテンツ全体のラッパー */
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+    }
+
+    /* サイドバー共通スタイル */
+    .sidebar {
+      width: 250px; /* 固定幅 */
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column; /* 画像を縦に並べる */
+      justify-content: flex-start; /* 上に配置 */
+      align-items: center;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .sidebar img {
+      max-width: 100%;
+      height: auto; /* アスペクト比を維持 */
+      cursor: pointer; /* 画像をクリック可能にする */
+      margin-bottom: 10px; /* 画像の間隔 */
+    }
+
+    .sidebar button {
+      width: 100%; /* ボタンをサイドバー幅に合わせる */
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px; /* 画像とボタンの間隔 */
+    }
+
+    .sidebar button:hover {
+      background-color: #0056b3;
+    }
+
+    /* メインコンテンツ */
+    .main-content {
+      flex: 1; /* サイドバーを除くスペースを占有 */
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 垂直方向に中央揃え */
+      align-items: center; /* 水平方向に中央揃え */
+    }
+
+    /* メインコンテンツ内の画像とボタン */
+    #name {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* 要素が横幅を超えたら折り返す */
+      gap: 30px; /* 各要素間の間隔 */
+    }
+
+    #name div {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px; /* 画像とボタン間の間隔 */
+    }
+
+    #name img {
+      width: 200px; /* 画像の幅 */
+      height: 200px; /* 画像の高さを揃える */
+      object-fit: cover; /* アスペクト比を維持しながら枠に収める */
+      cursor: pointer; /* 画像をクリック可能にする */
+    }
+
+    #name button {
+      width: 200px; /* ボタンの幅を画像に合わせる */
+      height: 60px; /* ボタンの高さを揃える */
+      padding: 0; /* 内側の余白を調整 */
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 60px; /* ボタン内のテキストを縦中央揃え */
+      text-align: center; /* テキストを中央揃え */
+    }
+
+    #name button:hover {
+      background-color: #0056b3;
+    }
+
+    /* 右側サイドバーの画像を大きくする */
+    .right-sidebar img {
+      width: 100%;  /* 幅を100%に設定 */
+      height: 700px; /* 高さを300pxに設定 */
+      object-fit: cover; /* 画像を枠に合わせて表示 */
+    }
+
+    /* フッター */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <h2>初めてのサイバー被害体験</h2>
+    <p>ここでは、偽広告の被害を体験することができます。</p>
+  </header>
+
+  <!-- コンテンツラッパー -->
+  <div class="content-wrapper">
+    <!-- 左側サイドバー -->
+    <aside class="sidebar">
+      <!-- 左側の画像を縦に並べる -->
+      <a href="#" onclick="alert('左側の画像がクリックされました');">
+        <img src="/image/偽広告その3.png" alt="左側の画像">
+      </a>
+      <a href="#" onclick="alert('左側の画像がクリックされました');">
+        <img src="/image/偽広告その3.png" alt="左側の画像">
+      </a>
+      <a href="#" onclick="alert('左側の画像がクリックされました');">
+        <img src="/image/偽広告その3.png" alt="左側の画像">
+      </a>
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <div class="main-content">
+      <div id="name">
+        <!-- Item 1 -->
+        <div>
+          <img src="/image/images.jpg" alt="PC" onclick="window.location.href='#';">
+          <button>PC</button>
+        </div>
+        <!-- Item 2 -->
+        <div>
+          <img src="/image/animal_character_uma_ninjin.png" alt="Horse" onclick="window.location.href='#';">
+          <button>Horse</button>
+        </div>
+        <!-- Item 3 -->
+        <div>
+          <img src="/image/fruit_suika_kodama.png" alt="Watermelon" onclick="window.location.href='#';">
+          <button>Watermelon</button>
+        </div>
       </div>
-      
-      <div class="body">
-        <h2>h2のタイトルメインコンテンツ</h2>
-        <p>pのテキスト</p>
-        <section id="section1">
-            <h2>セクション 1</h2>
-            <p>これはセクション1です。ウェブページのコンテンツがここに表示されます。</p>
-          </section>
-      
-          <section id="section2">
-            <h2>セクション 2</h2>
-            <p>これはセクション2です。ウェブページのコンテンツがここに表示されます。</p>
-          </section>
-      
-          <section id="section3">
-            <h2>セクション 3</h2>
-            <p>これはセクション3です。ウェブページのコンテンツがここに表示されます。</p>
-          </section>
-      
-          <footer>
-            <p>© 2024 サンプルWEBページ</p>
-          </footer>
-      
+      <div id="name">
+        <!-- Item 4 -->
+        <div>
+          <img src="/image/blade＆pen.jpg" alt="PC" onclick="window.location.href='#';">
+          <button>B&P</button>
+        </div>
+        <!-- Item 5 -->
+        <div>
+          <img src="/image/gun.jpg" alt="Horse" onclick="window.location.href='#';">
+          <button>Gun</button>
+        </div>
+        <!-- Item 6 -->
+        <div>
+          <img src="/image/maney.jpg" alt="Watermelon" onclick="window.location.href='#';">
+          <button>mmoney</button>
+        </div>
+      </div>
     </div>
-  </body>
+
+    <!-- 右側サイドバー -->
+    <aside class="sidebar right-sidebar">
+      <a href="#" onclick="alert('右側の画像がクリックされました');">
+        <img src="/image/偽広告その4.jpg" alt="右側の画像">
+      </a>
+    </aside>
+  </div>
+
+  <!-- フッター -->
+  <footer>
+    <p>© 2024 サンプルWEBページ</p>
+  </footer>
+</body>
 </html>
+
+

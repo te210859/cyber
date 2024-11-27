@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>サンプルWEBページ</title>
     <style>
-      /* CSS部分 */
-
+      /* 全体のスタイル */
       body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
         background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
       }
 
       header {
@@ -28,11 +29,10 @@
       nav ul {
         list-style-type: none;
         padding: 0;
-      }
-
-      nav ul li {
-        display: inline;
-        margin: 0 10px;
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
       }
 
       nav ul li a {
@@ -40,15 +40,28 @@
         text-decoration: none;
       }
 
+      /* サイドバー */
+      .side {
+        width: 20%;
+        background-color: rgb(155, 155, 155);
+        padding: 15px;
+        position: fixed;
+        top: 70px; /* ヘッダーの高さ */
+        left: 0;
+        height: calc(100% - 70px);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .content {
+        margin-left: 20%;
+        padding: 20px;
+      }
+
       section {
         padding: 20px;
         margin: 20px 0;
         background-color: white;
         border-radius: 8px;
-      }
-
-      section h2 {
-        margin-top: 0;
       }
 
       footer {
@@ -61,27 +74,53 @@
         bottom: 0;
       }
 
-      footer p {
-        margin: 0;
+      /* ボタンのスタイル */
+      #pc {
+        color: red;
       }
-      .side {
-        width: 20%;
-        background-color: rgb(155, 155, 155);
+
+      #uma {
+        color: blue;
+      }
+
+      #suica {
+        color: green;
+      }
+
+      button {
+        font-size: 100px;
+        width:50px;
+        height:100px;
+        background-color: #f9f9f9;
+      }
+
+      .name {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      /* レスポンシブデザイン */
+      @media (max-width: 768px) {
+        .side {
+          position: static;
+          width: 100%;
+          height: auto;
+          box-shadow: none;
+        }
+        .content {
+          margin-left: 0;
+        }
+        nav ul {
+          flex-direction: column;
+          gap: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- HTML部分 -->
-
     <header>
       <h1>サンプルWEBページ</h1>
-      <div class="side">
-        <h3>h3の目次</h3>
-        <ul>
-          <li>home</li>
-          <li>問い合わせ</li>
-        </ul>
-      </div>
       <nav>
         <ul>
           <li><a href="#section1">セクション 1</a></li>
@@ -91,41 +130,53 @@
       </nav>
     </header>
 
-    <section id="section1">
-      <h2>セクション 1</h2>
-      <p>これはセクション1です。ウェブページのコンテンツがここに表示されます。</p>
-    </section>
+    <div class="side">
+      <h3>目次</h3>
+      <ul>
+        <li>Home</li>
+        <li>問い合わせ</li>
+      </ul>
+    </div>
 
-    <section id="section2">
-      <h2>セクション 2</h2>
-      <p>これはセクション2です。ウェブページのコンテンツがここに表示されます。</p>
-    </section>
+    <div class="content">
+      <section id="section1">
+        <h2>セクション 1</h2>
+        <p>これはセクション1です。ウェブページのコンテンツがここに表示されます。</p>
+        <div class="name">
+          <button id="pc">PC用ボタン</button>
+          <button id="uma">馬のボタン</button>
+          <button id="suica">スイカのボタン</button>
+        </div>
+      </section>
 
-    <section id="section3">
-      <h2>セクション 3</h2>
-      <p>これはセクション3です。ウェブページのコンテンツがここに表示されます。</p>
-    </section>
+      <section id="section2">
+        <h2>セクション 2</h2>
+        <p>これはセクション2です。ウェブページのコンテンツがここに表示されます。</p>
+      </section>
+
+      <section id="section3">
+        <h2>セクション 3</h2>
+        <p>これはセクション3です。ウェブページのコンテンツがここに表示されます。</p>
+      </section>
+    </div>
 
     <footer>
       <p>© 2024 サンプルWEBページ</p>
     </footer>
 
-    <!-- JavaScript部分 -->
     <script>
-      // ページがロードされた後に実行するコード
-      window.onload = function() {
+      window.onload = function () {
         console.log("ページがロードされました!");
-
-        // ナビゲーションリンクをクリックすると、ページのセクションにスクロール
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-          link.addEventListener('click', function(event) {
+        const navLinks = document.querySelectorAll("nav ul li a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (event) {
             event.preventDefault();
-            const targetSection = document.querySelector(this.getAttribute('href'));
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+            const targetSection = document.querySelector(this.getAttribute("href"));
+            targetSection.scrollIntoView({ behavior: "smooth" });
           });
         });
       };
     </script>
   </body>
 </html>
+

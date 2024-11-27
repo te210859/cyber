@@ -1,71 +1,133 @@
-/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display:flex;
+  flex-direction: column;
+
+}
+
 header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+  background-color: red;
+  color:yellow;
+  padding-bottom: 10px;
+  text-align: center;
+}
 
-.container {
-    width: 100%;
-    height: 200px;
-    display: flex;
-  }
-  .body {
-    width: 80%;
-    background-color: rgb(155, 154, 154);
-  }
-  .side {
-    width: 20%;
-    background-color: rgb(136, 136, 136);
-  }
-  header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
+header h1 {
+  margin: 0;
+}
 
-  header h1 {
-    margin: 0;
-  }
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+#hi{
+  text-align: center;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
 
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-  }
+/* サイドバー */
+.side {
+  position: sticky; /* スクロールに追従する */
+  top: 70px; /* ヘッダーの高さを考慮 */
+  width: 20%;
+  background-color: rgb(155, 155, 155);
+  padding: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
 
-  nav ul li {
-    display: inline;
-    margin: 0 10px;
-  }
+.content {
+  margin-left: 20%;
+  padding: 20px;
+}
 
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
+section {
+  padding: auto;
+  margin-left:300px;
+  background-color: white;
+  border-radius: 8px;
+}
 
-  section {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: white;
-    border-radius: 8px;
-  }
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed; /* 固定表示 */
+  width: 100%;
+  bottom: 0; /* ページ下部に固定 */
+}
 
-  section h2 {
-    margin-top: 0;
-  }
+/* ボタンのスタイル */
+button{
+  margin-top: 10px; /* 画像とボタンの間に余白を追加 */
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  width:150px;
+  height:75px;
+}
+button:hover {
+  background-color: #0056b3;
+}
+#name {
+  display: flex; /* 横並びにする */
+  justify-content: center; /* 全体を中央揃え */
+  align-items: flex-start; /* 上部揃え */
+  gap: 30px; /* 各画像とボタンの間のスペース */
+}
 
-  footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-  }
+#name div {
+  display: flex;
+  flex-direction: column; /* 縦方向に配置 */
+  align-items: center;    /* 中央揃え */
+  gap: 5px;/* 画像とボタンの間にスペースを追加 */
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
-  footer p {
-    margin: 0;
-  }
+#name img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* width, heightといっしょに使います */
+  border: 1px solid #111;
+}
+
+#name button {
+  margin-top: 10px; /* 画像とボタンの間に適切な余白 */
+  padding: 10px 20px;
+  font-size: 14px;
+  width: 150px;
+  height: 100;
+}
+      /* 右サイドバー */
+      #rightside {
+        width: 200px; /* サイドバーの幅 */
+        background-color: #f0f0f0; /* 背景色 */
+        padding: 20px;
+        box-sizing: border-box; /* パディング込みで幅調整 */
+        display: flex;
+        flex-direction: column; /* 中身を縦並び */
+        align-items: center; /* 中央揃え */
+      }
+
+      /* サイドバー内の画像 */
+      #rightside img {
+        max-width: 100%; /* サイドバーの幅内で画像を調整 */
+        height: auto;
+        margin-bottom: 20px; /* 下の余白 */
+      }
