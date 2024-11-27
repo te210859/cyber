@@ -1,0 +1,22 @@
+html {
+    cursor: none;
+}
+
+body {
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+img {
+    cursor: default;
+    place-items: center;
+    margin-top: 15%;
+    
+  }
+
+  div {
+    text-align: center;
+  }
+
+     

@@ -29,7 +29,7 @@
 
     /* サイドバー共通スタイル */
     .sidebar {
-      width: 250px; /* 固定幅 */
+      width: 320px; /* 固定幅 */
       background-color: #f0f0f0;
       display: flex;
       flex-direction: column; /* 画像を縦に並べる */
@@ -40,7 +40,7 @@
     }
 
     .sidebar img {
-      max-width: 100%;
+      max-width: 82%;
       height: auto; /* アスペクト比を維持 */
       cursor: pointer; /* 画像をクリック可能にする */
       margin-bottom: 10px; /* 画像の間隔 */
@@ -140,15 +140,9 @@
     <!-- 左側サイドバー -->
     <aside class="sidebar">
       <!-- 左側の画像を縦に並べる -->
-      <a href="#" onclick="alert('左側の画像がクリックされました');">
-        <img src="/image/偽広告その3.png" alt="左側の画像">
-      </a>
-      <a href="#" onclick="alert('左側の画像がクリックされました');">
-        <img src="/image/偽広告その3.png" alt="左側の画像">
-      </a>
-      <a href="#" onclick="alert('左側の画像がクリックされました');">
-        <img src="/image/偽広告その3.png" alt="左側の画像">
-      </a>
+        <img src="/image/偽広告その3.png" alt="左側の画像" onclick="window.location.href='/cursor/cursor.html'">
+        <img src="/image/偽広告その3.png" alt="左側の画像" onclick="window.location.href='/cursor/cursor.html'">
+        <img src="/image/偽広告その3.png" alt="左側の画像" onclick="window.location.href='/cursor/cursor.html'">
     </aside>
 
     <!-- メインコンテンツ -->
@@ -184,16 +178,14 @@
         <!-- Item 6 -->
         <div>
           <img src="/image/maney.jpg" alt="Watermelon" onclick="window.location.href='#';">
-          <button>mmoney</button>
+          <button>Money</button>
         </div>
       </div>
     </div>
 
     <!-- 右側サイドバー -->
     <aside class="sidebar right-sidebar">
-      <a href="#" onclick="alert('右側の画像がクリックされました');">
-        <img src="/image/偽広告その4.jpg" alt="右側の画像">
-      </a>
+        <img src="/image/偽広告その4.jpg" alt="右側の画像" onclick="window.location.href='/cursor/cursor.html'">
     </aside>
   </div>
 
