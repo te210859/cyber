@@ -11,6 +11,7 @@
       display: flex;
       flex-direction: column; /* 上から下へのレイアウト */
       min-height: 100vh; /* ページ全体の高さを占める */
+      position: relative; /* ポップアップの絶対配置に対応するため */
     }
 
     /* ヘッダー */
@@ -119,27 +120,72 @@
       object-fit: cover; /* 画像を枠に合わせて表示 */
     }
 
-    /* 中央に出現する画像のスタイル */
-    .centered-image {
-      opacity: 0;  /* 初期状態では非表示 */
-      position: absolute; /* 絶対配置 */
-      top: 50%; /* 垂直中央 */
-      left: 50%; /* 水平中央 */
-      transform: translate(-50%, -50%) scale(0.5); /* 初期は縮小 */
-      animation: fadeIn 2s forwards; /* アニメーション */
-      cursor: pointer; /* クリック可能にする */
+    /* ポップアップ広告のスタイル */
+    .popup-ad-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000; /* 他の要素の上に配置 */
     }
 
-    /* 画像のアニメーション */
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5); /* 初期状態で縮小 */
-      }
-      100% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1); /* 完全に表示されて元のサイズ */
-      }
+    .popup-ad {
+      position: relative;
+      width: 80%;
+      max-width: 900px;
+      background-color: #444;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-ad img {
+      width: 100%;
+      display: block;
+    }
+
+    .popup-ad .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: white;
+      color: black;
+      width: 5px;
+      height: 5px;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 38px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-ad .close-btn:hover {
+      background-color: red;
+      color: white;
+    }
+
+    .popup-ad .ad-footer {
+      background-color: #888;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .popup-ad .ad-footer a {
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .popup-ad .ad-footer a:hover {
+      text-decoration: underline;
     }
 
     /* フッター */
@@ -150,8 +196,22 @@
       padding: 10px;
     }
   </style>
+  <script>
+    // 広告を閉じる機能
+    function closeAd() {
+      document.querySelector('.popup-ad-overlay').style.display = 'none';
+    }
+  </script>
 </head>
 <body>
+  <!-- 広告オーバーレイ -->
+  <div class="popup-ad-overlay">
+    <div class="popup-ad">
+      <button class="close-btn" onclick="closeAd()">×</button>
+      <img src="/image/偽広告その3.png" alt="広告画像" onclick="window.location.href='/cursor/cursor.html'">
+    </div>
+  </div>
+
   <!-- ヘッダー -->
   <header>
     <h2>初めてのサイバー被害体験</h2>
@@ -189,25 +249,25 @@
       <div id="name">
         <!-- Item 4 -->
         <div>
-          <img src="/image/blade＆pen.jpg" alt="PC" onclick="window.location.href='#';">
+          <img src="/image/blade＆pen.jpg" alt="Blade & Pen" onclick="window.location.href='#';">
           <button>B&P</button>
         </div>
         <!-- Item 5 -->
         <div>
-          <img src="/image/gun.jpg" alt="Horse" onclick="window.location.href='#';">
+          <img src="/image/gun.jpg" alt="Gun" onclick="window.location.href='#';">
           <button>Gun</button>
         </div>
         <!-- Item 6 -->
         <div>
-          <img src="/image/maney.jpg" alt="Watermelon" onclick="window.location.href='#';">
-          <button>Money</button>
+          <img src="/image/moneytrapその２.jpg" alt="Moneytrap" onclick="window.location.href='/cursor/cursor.html';">
+          <button onclick="window.location.href='/cursor/cursor.html'">Money</button>
         </div>
       </div>
     </div>
 
     <!-- 右側サイドバー -->
     <aside class="sidebar right-sidebar">
-        <img src="/image/偽広告その4.jpg" alt="右側の画像" onclick="window.location.href='/cursor/cursor.html'">
+      <img src="/image/偽広告その4.jpg" alt="右側の画像" onclick="window.location.href='/cursor/cursor.html'">
     </aside>
   </div>
 
@@ -217,5 +277,7 @@
   </footer>
 </body>
 </html>
+
+
 
 
