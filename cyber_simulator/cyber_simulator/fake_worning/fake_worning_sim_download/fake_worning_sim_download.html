@@ -119,6 +119,18 @@
       height: 700px; /* 高さを300pxに設定 */
       object-fit: cover; /* 画像を枠に合わせて表示 */
     }
+    .alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 5px #999;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #333;
+    gap: 0.5rem;
+    line-height: 1.5;
+}
 
     /* ポップアップ広告のスタイル */
     .popup-ad-overlay {
@@ -151,24 +163,20 @@
 
     .popup-ad .close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: white;
+      left: 10px;
+      background-color:rgb(92, 14, 14);
       color: black;
-      width: 5px;
-      height: 5px;
       border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      text-align: center;
-      line-height: 38px;
+      border-radius:50%;
+      font-size:30px;
+      cursor:pointer;
+      text-align:center;
+      line-height:25px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .popup-ad .close-btn:hover {
-      background-color: red;
-      color: white;
+      background-color:gray;
     }
 
     .popup-ad .ad-footer {
@@ -204,18 +212,16 @@
   </script>
 </head>
 <body>
-  <!-- 広告オーバーレイ -->
   <div class="popup-ad-overlay">
     <div class="popup-ad">
-      <button class="close-btn" onclick="closeAd()">×</button>
-      <img src="/image/偽広告その3.png" alt="広告画像" onclick="window.location.href='/cursor/cursor.html'">
+      <button class="close-btn" onclick="closeAd()">☒</button>
+      <img src="/image/偽広告その2.png" alt="広告画像" onclick="window.location.href='/cursor/cursor.html'">
     </div>
   </div>
 
   <!-- ヘッダー -->
   <header>
-    <h2>初めてのサイバー被害体験</h2>
-    <p>ここでは、偽広告の被害を体験することができます。</p>
+    <h2>Prominenceダウンロード</h2>
   </header>
 
   <!-- コンテンツラッパー -->
@@ -232,30 +238,30 @@
       <div id="name">
         <!-- Item 1 -->
         <div>
-          <img src="/image/images.jpg" alt="PC" onclick="window.location.href='#';">
-          <button>PC</button>
+          <img src="/image/images.jpg" alt="PC">
+          <button onclick="alert('成功しました。他のところも押してみてください。');">PC</button>
         </div>
         <!-- Item 2 -->
         <div>
-          <img src="/image/animal_character_uma_ninjin.png" alt="Horse" onclick="window.location.href='#';">
-          <button>Horse</button>
+          <img src="/image/animal_character_uma_ninjin.png" alt="Horse">
+          <button onclick="alert('成功しました。他のところも押してみてください。');">Horse</button>
         </div>
         <!-- Item 3 -->
         <div>
-          <img src="/image/fruit_suika_kodama.png" alt="Watermelon" onclick="window.location.href='#';">
-          <button>Watermelon</button>
+          <img src="/image/fruit_suika_kodama.png" alt="Watermelon">
+          <button onclick="alert('成功しました。他のところも押してみてください。');">Watermelon</button>
         </div>
       </div>
       <div id="name">
         <!-- Item 4 -->
         <div>
-          <img src="/image/blade＆pen.jpg" alt="Blade & Pen" onclick="window.location.href='#';">
-          <button>B&P</button>
+          <img src="/image/blade＆pen.jpg" alt="Blade & Pen">
+          <button onclick="alert('成功しました。他のところも押してみてください。');">B&P</button>
         </div>
         <!-- Item 5 -->
         <div>
-          <img src="/image/gun.jpg" alt="Gun" onclick="window.location.href='#';">
-          <button>Gun</button>
+          <img src="/image/gun.jpg" alt="Gun">
+          <button onclick="alert('成功しました。他のところも押してみてください。');">Gun</button>
         </div>
         <!-- Item 6 -->
         <div>
