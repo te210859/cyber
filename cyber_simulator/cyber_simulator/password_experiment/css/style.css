@@ -1,218 +1,170 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding-top: 120px;
-    background-color: #f4f4f4;
-  }
-  
-  .container {
-    width: 100%;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(24, 12, 12, 0.1);
-  }
-  
-  header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  header h1 {
-    font-size: 2em;
-    margin: 0;
-  }
-  
-  .content {
-    font-size: 1.2em;
-    color: #333;
-    text-align: center;
-  }
-  
-  .content img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px 0;
-  }
-  
-  /* ページネーションのスタイル */
-  .pagination {
-    display: flex;
-    justify-content: center; /* 中央に配置 */
-    margin-top: 20px;
-  }
-  
-  .pagination a {
-    padding: 10px 15px;
-    margin: 0 5px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* ホバー時のスタイル */
-  .pagination a:hover {
-    background-color: #0056b3;
-  }
-  
-  /* 最初のページと前のページの矢印 */
-  .prev-next-button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  .prev-next-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .next-page-button {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    max-width: fit-content;
-    text-align: center;
-  }
-  
-  .content {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    max-width: fit-content;
-  }
-  
-  /* インスクロール広告のスタイル (下部) */
-  #ad-banner {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #000000;
-    color: rgb(255, 0, 0);
-    text-align: center;
-    padding: 10px 0;
-    font-size: 1.2em;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-  }
-  
-  /* Xボタンのスタイル (下部広告) */
-  #ad-banner .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    color: white;
-    font-size: 1.5em;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .spam {
-    color: blue;
-  }
-  
-  /* 広告を表示する条件 */
-  #ad-banner.visible {
-    display: block;
-  }
-  
-  /* サイドバー固定広告のスタイル */
-  #sidebar-ad {
-    display: block;
-    position: fixed;
-    top: 100px;
-    right: 0;
-    width: 250px;
-    background-color: #000000;
-    color: rgb(255, 0, 0);
-    text-align: center;
-    padding: 20px;
-    font-size: 1.2em;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    border-radius: 10px 0 0 10px; /* 角を丸くする */
-  }
-  
-  /* Xボタンのスタイル (サイドバー広告) */
-  #sidebar-ad .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    color: white;
-    font-size: 1.5em;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* ポップアップ広告のスタイル */
-  #popup-ad {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    max-width: 600px;
-    background-color: #000000;
-    color: rgb(255, 0, 0);
-    text-align: center;
-    padding: 30px;
-    font-size: 1.5em;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
-  }
-  
-  /* Xボタンのスタイル (ポップアップ広告) */
-  #popup-ad .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    color: white;
-    font-size: 1.5em;
-    border: none;
-    cursor: pointer;
-  }
-
-  .center:hover{
-    background-color: #0056b3;
-  }
-
-  .oya{
-    top: 20px;
-  }
-  
-
-  
-  /*へっだーーーーーーーー*/
- /* Reset and Font Imports */
-@import url(https://reset5.googlecode.com/hg/reset.min.css);
-@import url(https://fonts.googleapis.com/css?family=Slabo+27px|Open+Sans);
-
-/* Variables (CSS doesn't support variables like SCSS) */
-body {
-
-
-  background: #ffffff;
-  height: 1500px;
+  padding-top: 120px;
+  width: 100%;
+  /*display: flex;*/
+  justify-content: center;
+  align-items: center;
+  /*new*/
+  height: 100%;
 }
+label, input {
+  display: block;
+}
+.oyacontainer {
+  display: flex;
+  padding: 20px;
+}
+
+.container {
+  margin-top: 32px;
+  box-sizing: border-box;
+  border: 1px #dddddd solid;
+  background-color: #eeeeee;
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+  width: 56%;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  /*new*/
+  align-items: flex-start;
+  max-height: 90vh;
+  flex-direction: column;
+}
+
+.png {
+  max-width: 100%; /* 画像を親要素にフィットさせる */
+  height: auto; /* アスペクト比を保って高さを調整 */
+  border-radius: 8px; /* 角を丸くする */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 画像に柔らかな影を追加 */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* ホバー時にアニメーションを追加 */
+  margin-bottom: 20px; /* 画像の下に余白を追加 */
+}
+
+/* 画像にホバー時の効果を追加 */
+.png:hover {
+  transform: scale(1.03); /* 画像を少し拡大 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* 影を強調 */
+}
+
+.right {
+  /*padding-top: 32px;
+  width: 35%; /* 画面の48%の幅 */
+  /*background-color: rgb(128, 128, 128);
+
+  box-sizing: border-box; /* paddingを含めた幅 */
+  /*height: 750px; /* 高さを設定 */
+  /*overflow: auto; /* 内容が多い場合スクロールバーを表示 */
+  overflow-x: auto; /* 横スクロールバーを表示 */
+
+  margin-top: 32px;
+  box-sizing: border-box;
+  border: 1px #dddddd solid;
+  background-color: #cac6c6;
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  /*new*/
+  align-items: flex-start;
+  max-height: 90vh;
+  flex-direction: column;
+}
+#user-id-wrapper {
+  margin-left: 32px;
+  width: 100%;
+}
+#password-wrapper {
+  display: flex;
+  width: 100%;
+
+}
+#input-password-wrapper {
+  width: 100%;
+}
+#user-id {
+  width: calc(80% - 32px);
+}
+#input-password {
+  margin: 0;
+  width: 80%;
+}
+#password-meter {
+  margin: 19px 6px 0 -6px;
+  width: 32px;
+  height: 32px;
+}
+.input-password {
+  vertical-align: top;
+}
+table {
+  padding: 16px;
+  width: 100%;
+}
+table td {
+  background-color: #dedede;
+  white-space: pre;
+}
+table .n {
+  background-color: #cccccc;
+  padding: 0 32px;
+}
+table .n.score {
+  background-color: #b3b3b3;
+}
+#score {
+  background-color: #cacaca;
+}
+
+#user-id-wrapper {
+  /*border: 1px green dotted;  !* デバッグ *!*/
+  padding: 0 16px;
+}
+#password-wrapper {
+  /*border: 1px green dotted;  !* デバッグ *!*/
+  padding: 0 16px;
+}
+#user_id {
+  box-sizing: border-box;
+  width: 100%;
+}
+#password {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+.section {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: block;
+  width: 100%;
+  font-size: small;
+}
+.section h2 {
+  color: #0073e6;
+}
+.section p {
+  font-size: 1.2em;
+  color: #333;
+}
+.example {
+  background-color: #e7f3fe;
+  padding: 10px;
+  border-left: 4px solid #0073e6;
+  margin-top: 10px;
+}
+
+
 
 .header {
   position: fixed;
@@ -230,16 +182,6 @@ body {
   /*position: relative; /* 画像を重ねて表示させるため */
 
 }
-
-
-
-
-
-
-
-
-
-
 
 .header .wrap {
   margin: 0 auto;

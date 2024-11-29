@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左に1つ、右に2つのコンテナ</title>
+    <style>
+        /* 親コンテナ */
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        /* 左側のコンテナ */
+        .left {
+            margin-top: 32px;
+  box-sizing: border-box;
+  border: 1px #dddddd solid;
+  background-color: #eeeeee;
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+
+
+
+            width: 48%; /* 画面の48%の幅 */
+            
+            padding: 20px;
+            box-sizing: border-box; /* paddingを含めた幅 */
+            height: 1000px; /* 高さを設定 */
+            overflow: auto; /* 内容が多い場合スクロールバーを表示 */
+        }
+
+
+
+
+
+
+
+        #user-id-wrapper {
+  margin-left: 32px;
+  width: 100%;
+}
+#password-wrapper {
+  display: flex;
+  width: 100%;
+
+}
+#input-password-wrapper {
+  width: 100%;
+}
+#user-id {
+  width: calc(80% - 32px);
+}
+#input-password {
+  margin: 0;
+  width: 80%;
+}
+#password-meter {
+  margin: 19px 6px 0 -6px;
+  width: 32px;
+  height: 32px;
+}
+.input-password {
+  vertical-align: top;
+}
+table {
+  padding: 16px;
+  width: 100%;
+}
+table td {
+  background-color: #dedede;
+  white-space: pre;
+}
+table .n {
+  background-color: #cccccc;
+  padding: 0 32px;
+}
+table .n.score {
+  background-color: #b3b3b3;
+}
+#score {
+  background-color: #cacaca;
+}
+
+#user-id-wrapper {
+  /*border: 1px green dotted;  !* デバッグ *!*/
+  padding: 0 16px;
+}
+#password-wrapper {
+  /*border: 1px green dotted;  !* デバッグ *!*/
+  padding: 0 16px;
+}
+#user_id {
+  box-sizing: border-box;
+  width: 100%;
+}
+#password {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* 右側のコンテナを縦に並べるための親コンテナ */
+        .right-container {
+            display: flex;
+            flex-direction: column; /* 縦並び */
+            width: 48%; /* 画面の48%の幅 */
+            /*gap: 20px; /* コンテナ間の隙間 */
+        }
+
+        /* 右側の上のコンテナ */
+        .right-top {
+            background-color: lightgreen;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 500px; /* 高さを設定 */
+            overflow: auto; /* 内容が多い場合スクロールバーを表示 */
+        }
+
+        /* 右側の下のコンテナ */
+        .right-bottom {
+            background-color: lightcoral;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 500px; /* 高さを設定 */
+            overflow: auto; /* 内容が多い場合スクロールバーを表示 */
+        }
+
+        /* セクション */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .example {
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="input-password">
+
+                <div id="user-id-wrapper">
+                  <label for="user-id">ID：</label>
+                  <input id="user-id" placeholder="ユーザーID" value="yamada"/>
+                </div>
+            
+                <div id="password-wrapper">
+                  <div>
+                    <img src="img/meter99.svg" alt="パスワード強度メーター（デフォルト）" id="password-meter"/>
+                  </div>
+                  <div id="input-password-wrapper">
+                    <label for="input-password">パスワード：</label>
+                    <input id="input-password" placeholder="パスワードを入力" value="abcdefg"/>
+                    <div>
+                      <p id="password-msg"></p>
+                    </div>
+                  </div>
+                </div>
+            
+            
+                <table class="result">
+                  <tr>
+                    <td class="n">推測回数:</td>
+                    <td id="guesses"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">推測回数の対数:</td>
+                    <td id="guesses_log10"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">クラック時間(専門向け)</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オンライン制限あり</td>
+                    <td id="online_throttling_100_per_hour"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オンライン制限なし</td>
+                    <td id="online_no_throttling_10_per_second"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オフライン低速ハッシュ</td>
+                    <td id="offline_slow_hashing_1e4_per_second"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オフライン高速ハッシュ</td>
+                    <td id="offline_fast_hashing_1e10_per_second"></td>
+                  </tr>
+                
+            
+                  <tr>
+                    <td class="n">クラック時間(一般向け)</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オンライン制限あり</td>
+                    <td id="crack_times_display_online_throttling_100_per_hour"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オンライン制限なし</td>
+                    <td id="crack_times_display_online_no_throttling_10_per_second"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オフライン低速ハッシュ</td>
+                    <td id="crack_times_display_offline_slow_hashing_1e4_per_second"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・オフライン高速ハッシュ</td>
+                    <td id="crack_times_display_offline_fast_hashing_1e10_per_second"></td>
+                  </tr>
+            
+                  <tr>
+                    <td class="n score">強度のスコア(4点満点)</td>
+                    <td id="score" class="score"></td>
+                  </tr>
+            
+                  <tr>
+                    <td class="n">フィードバック</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・警告</td>
+                    <td id="feedback_warning"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">&nbsp;&nbsp;・提案</td>
+                    <td id="feedback_suggestions"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">シーケンス</td>
+                    <td id="sequence"></td>
+                  </tr>
+                  <tr>
+                    <td class="n">計算時間</td>
+                    <td id="calc_time"></td>
+                  </tr>
+                </table>
+              </div>
+        </div>
+        
+        <div class="right-container">
+            <div class="right-top">
+                <div class="section">
+                    <h2>1. パスワード認証の試行をレート制限するサービスに対するオンライン攻撃</h2>
+                    <p>この攻撃は、パスワード認証を試みる際に、サービス側で認証試行の回数に制限（レート制限）が設定されている場合に行われます。制限に達するごとに一定の時間が必要になるため、攻撃者は攻撃速度が制限され、時間がかかります。</p>
+                    <div class="example">
+                        <strong>例:</strong> 1時間あたり最大100回の試行制限。
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>2. レート制限しないサービスへのオンライン攻撃</h2>
+                    <p>レート制限がない、もしくは攻撃者がレート制限を回避できる場合に行われるオンライン攻撃です。このようなサービスでは、攻撃者は無制限に認証試行を行うことができるため、迅速にパスワードを推測するリスクがあります。</p>
+                    <div class="example">
+                        <strong>例:</strong> 秒間最大10回の認証試行が可能なサービス。
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>3. オフライン攻撃（適切にユーザー毎のsalt設定とslow hash関数を使用）</h2>
+                    <p>オフライン攻撃では、攻撃者がハッシュ値に対して一度に多くの試行を行うことができますが、ユーザーごとにsalt（ソルト）が設定され、bcrypt、scrypt、PBKDF2などの適度な作業効率を持つslow hash関数が使用されている場合、攻撃は非常に困難になります。</p>
+                    <div class="example">
+                        <strong>例:</strong> 1秒あたり最大1万回の試行。
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>4. オフライン攻撃（高速なハッシュ関数を使用）</h2>
+                    <p>SHA-1、SHA-256、MD5などの高速なハッシュ関数を使用する場合、攻撃者はオフラインで膨大な回数の試行を行うことができます。これにより、コア数やマシン数が増えることで、1秒あたり数十億～数兆回の試行が可能となります。</p>
+                    <div class="example">
+                        <strong>例:</strong> 秒間最大10億回～1兆回の試行。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-bottom">
+                <img src="img/pass2.png" alt="pass2" class="png"/>
+                <img src="img/pass1.png" alt="pass1" class="png"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
