@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Lock Example</title>
+</head>
+<body>
+    <h1>フルスクリーンとキーボードロックのデモ</h1>
+    <button id="startFullscreen">フルスクリーンを開始</button>
+    <script>
+        async function startFullscreen() {
+            try {
+                await navigator.keyboard.lock(["Escape"]); // Escapeをロック
+                await document.documentElement.requestFullscreen(); // フルスクリーンに入る
+                console.log("フルスクリーンとキーボードロックが有効になりました");
+            } catch (error) {
+                console.error("エラー:", error);
+            }
+        }
+
+        document.getElementById("startFullscreen").addEventListener("click", startFullscreen);
+    </script>
+</body>
+</html>
+
