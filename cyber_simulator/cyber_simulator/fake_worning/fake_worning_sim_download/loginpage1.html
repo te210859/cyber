@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログインページ</title>
+  <style>
+    /* ページ全体のスタイル */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* ヘッダーのスタイル */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #c30000;
+      color: white;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .header nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header nav ul li {
+      margin-left: 20px;
+    }
+
+    .header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+    }
+
+    .header nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* メインコンテンツのスタイル */
+    .container {
+      width: 300px;
+      margin: 150px auto;
+      background: #ffffff;
+      padding-top: 5px;
+      padding-left:20px;
+      padding-right: 40px;
+      padding-bottom:10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+
+    .input-container label {
+      margin: 0 0 5px 0;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1em;
+      color: white;
+      background-color: #c30000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a30000;
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .forgot-password a {
+      color: #c30000;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="logo">MySite</div>
+    <nav>
+      <ul>
+        <li><a href="#">ホーム</a></li>
+        <li><a href="#">ヘルプ</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <div class="container">
+    <h2>ログイン</h2>
+    <form class="input-container" onsubmit="handleSubmit(event)">
+      <div>
+        <label for="user_id">メールアドレスまたはユーザーID</label>
+        <input id="user_id" type="text" name="user_id" placeholder="メールアドレスまたはユーザーIDを入力" value="sample@example.com" required>
+      </div>
+      <div>
+        <label for="password">パスワード</label>
+        <input id="password" type="password" name="password" placeholder="パスワードを入力" value="password123" required>
+      </div>
+      <div class="forgot-password">
+        <a href="#">パスワードを忘れましたか？</a>
+      </div>
+      <div class="forgot-password">
+        <a onclick="window.location.href='/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage2.html'" type="submit">新規登録はこちら</a>
+      </div>
+      <button>ログイン</button>
+    </form>
+  </div>
+  <script>
+</script>
+</body>
+</html>

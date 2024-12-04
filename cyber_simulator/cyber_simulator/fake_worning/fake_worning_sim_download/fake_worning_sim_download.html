@@ -163,18 +163,29 @@
 
     .popup-ad .close-btn {
       position: absolute;
-      left: 10px;
-      background-color:rgb(92, 14, 14);
-      color: black;
+      left:0.1px;
+      background-color: rgb(185, 236, 225);
+      color:aqua;
       border: none;
       border-radius:50%;
       font-size:30px;
       cursor:pointer;
       text-align:center;
       line-height:25px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-
+    .popup-ad .close-button{
+      position: absolute;
+      right: 10px;
+      background-color: rgb(248, 233, 230);
+      color:black;
+      border: none;
+      border-radius:50%;
+      font-size:50px;
+      margin-top: 10px;
+      cursor:pointer;
+      text-align:center;
+      line-height:25px;
+    }
     .popup-ad .close-btn:hover {
       background-color:gray;
     }
@@ -214,8 +225,9 @@
 <body>
   <div class="popup-ad-overlay">
     <div class="popup-ad">
-      <button class="close-btn" onclick="closeAd()">☒</button>
-      <img src="/image/偽広告その2.png" alt="広告画像" onclick="window.location.href='/cursor/cursor.html'">
+      <button class="close-btn"onclick="closeAd()">☒</button>
+      <button class="close-button"onclick="window.location.href='/cursor/cursor.html'">✕</button>
+      <img src="/image/偽広告その5.png" alt="広告画像" onclick="window.location.href='/cursor/cursor.html'">
     </div>
   </div>
 
