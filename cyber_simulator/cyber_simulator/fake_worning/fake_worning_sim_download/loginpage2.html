@@ -151,12 +151,17 @@
             <button class="faq-button">よくあるご質問はこちら</button>
         </header>
         <main class="main-content">
-            <h1>クレジットカード情報</h1>
+            <h1>支払い情報入力</h1>
             <p>下欄にご入力のうえ、[次へ進む]をクリック（タップ）してください。</p>
             <form id="creditCardForm" class="form">
                 <div class="form-group">
+                    <label for="zipcode">郵便番号<span class="required">必須</span></label>
+                    <input type="text" id="zipcode" name="zipcode" placeholder="例：1000001" required>
+                    <button type="button" id="searchAddress">住所検索</button>
+                </div>
+                <div class="form-group">
                     <label for="address">住所 <span class="required">必須</span></label>
-                    <textarea id="address" name="address" placeholder="例：〒123-4567 東京都千代田区1-1-1" rows="4" required></textarea>
+                    <textarea id="address" name="address" placeholder="例：東京都千代田区1-1-1" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="card-owner">カード所有者 <span class="required">必須</span></label>
@@ -174,6 +179,16 @@
                             <option value="" disabled selected>月</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                             <!-- 他の月を追加 -->
                         </select>
                         <span> / </span>
@@ -181,6 +196,11 @@
                             <option value="" disabled selected>年</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
                             <!-- 他の年を追加 -->
                         </select>
                     </div>
@@ -188,7 +208,7 @@
                 </div>
                 <div class="form-group">
                     <label for="security-code">セキュリティコード <span class="required">必須</span></label>
-                    <input type="text" id="security-code" name="security-code" placeholder="カード裏面の3桁" required>
+                    <input type="text" id="security-code" name="security-code" maxlength="3" placeholder="カード裏面の3桁" required>
                     <small>カード裏面に印字の3桁の番号をご入力ください。</small>
                 </div>
                 <button type="submit" class="submit-button">次へ進む</button>
@@ -215,6 +235,30 @@
         function closePopup() {
             document.getElementById('successPopup').style.display = 'none'; // ポップアップを非表示
         }
+        document.getElementById('searchAddress').addEventListener('click', function() {
+            const zipcode = document.getElementById('zipcode').value.trim();
+            if (!zipcode) {
+                alert('郵便番号を入力してください');
+                return;
+            }
+
+            // 郵便番号APIを呼び出す
+            fetch(`https://zip-cloud.appspot.com/api/search?zipcode=${zipcode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results) {
+                        const result = data.results[0];
+                        const address = `${result.address1} ${result.address2} ${result.address3}`;
+                        document.getElementById('address').value = address;
+                    } else {
+                        alert('住所が見つかりませんでした。郵便番号を確認してください。');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                    alert('住所検索中にエラーが発生しました。');
+                });
+        });
     </script>
 </body>
 </html>
