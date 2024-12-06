@@ -20,7 +20,7 @@ form {
 }
 
 .header {
-    background-color: #393f4c;
+    background-color: #272640;
 }
 
 h1 {
@@ -28,9 +28,6 @@ h1 {
     font-size: 2em;
     color: #efffff;
     display: inline;
-    font-family: "Fira Sans Condensed", sans-serif;
-    font-weight: 500;
-    font-style: normal;
 }
 
 h2 {
@@ -41,9 +38,6 @@ h4 {
     margin-bottom: 30px;
     color: #efffff;
     display: inline;
-    font-family: "Fira Sans Condensed", sans-serif;
-    font-weight: 200;
-    font-style: normal;
 }
 
 input {

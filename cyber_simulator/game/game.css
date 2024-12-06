@@ -1,0 +1,26 @@
+html,body {
+    overflow: hidden;
+  }
+html {
+    background-color: #0f0f0f;
+}
+.main {
+  text-align: center;
+}
+.main-picture {
+    width: 650px;
+}
+.sub-picture {
+    width: 650px;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .relative img.absolute {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0%);
+    top: 520px;
+  }

@@ -1,9 +1,19 @@
 @charset "UTF-8";
+
+html,body {
+    overflow: hidden;
+  }
 /*ヘッダー*/
 .header{
     text-align: center
 }
 /*ヘッダーここまで*/
+h1 {
+    font-size: 4em;
+    font-family: "Klee One", cursive;
+    font-weight: 600;
+    font-style: normal;
+}
 /*ボタン*/
 .button a {
     background: #eee;
@@ -15,12 +25,15 @@
     margin: 0 auto;
     max-width: 250px;
     padding: 10px 25px;
-    font-family: "Noto Sans Japanese";
     color: #333333;
-    line-height: 1.8;
+    line-height: 4;
     text-decoration: none;
     transition: 0.3s ease-in-out;
     font-weight: 500;
+    font-size: 1.2em;
+    font-family: "Klee One", cursive;
+    font-weight: 600;
+    font-style: normal;
 }
 .button a:hover {
     background: #333333;
@@ -50,3 +63,31 @@ body{
     text-align: center;
 }
 /*ボタンここまで*/
+
+/* プレビュー内容を隠す */
+.preview {
+    position: absolute;
+    top: 25%;
+    left: 50%; /* ボタンの右に表示 */
+    margin-left: 170px; /* ボタンとの間隔 */
+    width: 250px;
+    height: 560px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    display: none;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    text-align: left;
+}
+
+/* ボタンにホバーしたときにプレビューを表示 */
+.button a:hover + .preview {
+    display: block;
+}
+
+/* プレビューヘッダー */
+.preview h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
