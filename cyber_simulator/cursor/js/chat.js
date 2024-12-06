@@ -25,6 +25,29 @@ window.addEventListener('load', function () {
         button1.style.display = 'none'; // button1を非表示に
     });
 
+    // ひとつ前の画面に戻る処理
+    function goBack() {
+        // フルスクリーンを解除する処理
+        if (document.exitFullscreen) {
+            document.exitFullscreen();  // フルスクリーンを解除
+        } else if (document.mozCancelFullScreen) { // Firefox用
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Safari/Chrome用
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE用
+            document.msExitFullscreen();
+        }
+
+        // 履歴から前のページに戻る
+        window.history.back(); // 履歴から前のページに戻る
+    }
+
+    // button2がクリックされた時
+    document.getElementById('button2').addEventListener('click', goBack);
+
+    // button3がクリックされた時も同じ処理を実行
+    document.getElementById('button3').addEventListener('click', goBack);
+
     async function startFullscreen(){
         try{
             await navigator.keyboard.lock(["Escape", "F11"]);
