@@ -148,7 +148,7 @@
     <div class="container">
         <header class="header">
             <p id="title">MySite</p>
-            <button class="faq-button">よくあるご質問はこちら</button>
+            <button class="faq-button"  onclick="window.location.href='/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage1.html'" >ログインページに戻る</button>
         </header>
         <main class="main-content">
             <h1>支払い情報入力</h1>
@@ -156,7 +156,7 @@
             <form id="creditCardForm" class="form">
                 <div class="form-group">
                     <label for="zipcode">郵便番号<span class="required">必須</span></label>
-                    <input type="text" id="zipcode" name="zipcode"  placeholder="例：1000001" maxlength="7" required>
+                    <input type="text" id="zipcode" name="zipcode" placeholder="例：1000001" maxlength="7" minlength="7" required>
                     <button type="button" id="searchAddress">住所検索</button>
                 </div>
                 <div class="form-group">
@@ -169,7 +169,7 @@
                 </div>
                 <div class="form-group">
                     <label for="card-number">会員番号（カード番号） <span class="required">必須</span></label>
-                    <input type="text" id="card-number" name="card-number" maxlength="16" placeholder="0000 0000 0000 0000" required>
+                    <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" required>
                     <small>※半角数字16桁</small>
                 </div>
                 <div class="form-group">
@@ -189,7 +189,6 @@
                             <option value="10">10</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
-                            <!-- 他の月を追加 -->
                         </select>
                         <span> / </span>
                         <select id="expiry-year" name="expiry-year" required>
@@ -201,7 +200,6 @@
                             <option value="2028">2028</option>
                             <option value="2029">2029</option>
                             <option value="2030">2030</option>
-                            <!-- 他の年を追加 -->
                         </select>
                     </div>
                     <small>記入例：カードの表示「01/24」の場合は「01月2024年」とご入力ください。</small>
@@ -211,30 +209,74 @@
                     <input type="text" id="security-code" name="security-code" maxlength="3" placeholder="カード裏面の3桁" required>
                     <small>カード裏面に印字の3桁の番号をご入力ください。</small>
                 </div>
-                <button type="submit" class="submit-button">登録完了</button>
+                <button type="submit" class="submit-button">次へ進む</button>
             </form>
         </main>
-    </div>
-
-    <!-- ポップアップのHTML -->
-    <div class="popup" id="successPopup">
-        <div class="popup-content">
-            <h2>登録が完了しました</h2>
-            <button class="close-popup" onclick="closePopup()">閉じる</button>
-        </div>
     </div>
 
     <script>
         // フォーム送信イベント
         document.getElementById('creditCardForm').addEventListener('submit', function(event) {
             event.preventDefault(); // デフォルトのフォーム送信を防止
-            document.getElementById('successPopup').style.display = 'flex'; // ポップアップを表示
+
+            // 郵便番号の取得
+            const zipcode = document.getElementById('zipcode').value.trim();
+            if (!zipcode) {
+                alert('郵便番号を入力してください');
+                return;
+            }
+
+            // 郵便番号APIを呼び出す
+            fetch(`https://zip-cloud.appspot.com/api/search?zipcode=${zipcode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラーが発生しました。');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.results) {
+                        const result = data.results[0];
+                        const address = `${result.address1} ${result.address2} ${result.address3}`;
+                        document.getElementById('address').value = address;
+
+                        // 住所が取得できた後にページ遷移
+                        window.location.href = '/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage5.html';
+                    } else {
+                        alert('住所が見つかりませんでした。郵便番号を確認してください。');
+                    }
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                    alert('住所検索中にエラーが発生しました。');
+                });
         });
 
-        // ポップアップを閉じる関数
-        function closePopup() {
-            document.getElementById('successPopup').style.display = 'none'; // ポップアップを非表示
-        }
+        // カード番号の入力フィールドに対する制限
+        const cardNumberInput = document.getElementById('card-number');
+        cardNumberInput.addEventListener('input', () => {
+            // 数字以外の文字を削除
+            cardNumberInput.value = cardNumberInput.value.replace(/[^0-9]/g, '');
+
+            // 最大16桁まで制限
+            if (cardNumberInput.value.length > 16) {
+                cardNumberInput.value = cardNumberInput.value.slice(0, 16);
+            }
+        });
+
+        // セキュリティコードの入力フィールドに対する制限
+        const securityCodeInput = document.getElementById('security-code');
+        securityCodeInput.addEventListener('input', () => {
+            // 数字以外の文字を削除
+            securityCodeInput.value = securityCodeInput.value.replace(/[^0-9]/g, '');
+
+            // 最大3桁まで制限
+            if (securityCodeInput.value.length > 3) {
+                securityCodeInput.value = securityCodeInput.value.slice(0, 3);
+            }
+        });
+
+        // 郵便番号住所検索ボタンのイベント
         document.getElementById('searchAddress').addEventListener('click', function() {
             const zipcode = document.getElementById('zipcode').value.trim();
             if (!zipcode) {
@@ -244,7 +286,12 @@
 
             // 郵便番号APIを呼び出す
             fetch(`https://zip-cloud.appspot.com/api/search?zipcode=${zipcode}`)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラーが発生しました。');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.results) {
                         const result = data.results[0];
@@ -262,6 +309,7 @@
     </script>
 </body>
 </html>
+
 
 
 
