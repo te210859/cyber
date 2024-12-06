@@ -7,156 +7,225 @@
   <style>
     /* ページ全体のスタイル */
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      margin: 0; /* マージンをゼロに設定 */
+      font-family: Arial, sans-serif; /* フォントを設定 */
+      background-color: #f4f4f4; /* 背景色を設定 */
     }
 
     /* ヘッダーのスタイル */
     .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #c30000;
-      color: white;
-      padding: 10px 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; /* ヘッダーを固定 */
+      top: 0; /* 上部に配置 */
+      left: 0; /* 左端に配置 */
+      width: 100%; /* 幅を100%に設定 */
+      background-color: #c30000; /* 背景色を設定 */
+      color: white; /* 文字色を白に設定 */
+      padding: 10px 20px; /* パディングを設定 */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 影を追加 */
+      z-index: 1000; /* 他の要素の上に表示 */
+      display: flex; /* フレックスボックスを使用 */
+      justify-content: space-between; /* 左右の余白を均等に */
+      align-items: center; /* 垂直方向に中央揃え */
     }
 
     .header .logo {
-      font-size: 1.5em;
-      font-weight: bold;
+      font-size: 1.5em; /* ロゴのフォントサイズ */
+      font-weight: bold; /* 太字に設定 */
     }
 
     .header nav ul {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
+      list-style: none; /* リストのスタイルをなしに設定 */
+      display: flex; /* フレックスボックスを使用 */
+      margin: 0; /* マージンをゼロに設定 */
+      padding: 0; /* パディングをゼロに設定 */
     }
 
     .header nav ul li {
-      margin-left: 20px;
+      margin-left: 20px; /* リスト項目の左側に余白を追加 */
     }
 
     .header nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1em;
+      color: white; /* リンクの文字色を白に設定 */
+      text-decoration: none; /* リンクの下線を削除 */
+      font-size: 1em; /* フォントサイズを設定 */
     }
 
     .header nav ul li a:hover {
-      text-decoration: underline;
+      text-decoration: underline; /* ホバー時に下線を表示 */
     }
 
     /* メインコンテンツのスタイル */
     .container {
-      width: 300px;
-      margin: 150px auto;
-      background: #ffffff;
-      padding-top: 5px;
-      padding-left:20px;
-      padding-right: 40px;
-      padding-bottom:10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 300px; /* 幅を300pxに設定 */
+      margin: 150px auto; /* 上部150pxのマージン、中央寄せ */
+      background: #ffffff; /* 背景色を白に設定 */
+      padding-top: 5px; /* 上部のパディング */
+      padding-left: 20px; /* 左側のパディング */
+      padding-right: 40px; /* 右側のパディング */
+      padding-bottom: 10px; /* 下部のパディング */
+      border-radius: 10px; /* 角を丸く設定 */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 影を追加 */
     }
 
     h2 {
-      text-align: center;
+      text-align: center; /* 中央揃え */
     }
 
     .input-container {
-      display: flex;
-      flex-direction: column;
-      margin-top: 20px;
+      display: flex; /* フレックスボックスを使用 */
+      flex-direction: column; /* 縦方向に配置 */
+      margin-top: 20px; /* 上部のマージン */
     }
 
     .input-container label {
-      margin: 0 0 5px 0;
-      font-weight: bold;
+      margin: 0 0 5px 0; /* ラベルのマージンを設定 */
+      font-weight: bold; /* 太字に設定 */
     }
 
     input[type="text"],
     input[type="password"] {
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 100%;
+      padding: 10px; /* 内側のパディング */
+      margin-bottom: 15px; /* 下部のマージン */
+      border: 1px solid #ccc; /* 枠線を設定 */
+      border-radius: 5px; /* 角を丸く設定 */
+      width: 100%; /* 幅を100%に設定 */
     }
 
     button {
-      padding: 10px;
-      font-size: 1em;
-      color: white;
-      background-color: #c30000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 10px; /* 内側のパディング */
+      font-size: 1em; /* フォントサイズを設定 */
+      color: white; /* 文字色を白に設定 */
+      background-color: #c30000; /* 背景色を設定 */
+      border: none; /* 枠線を削除 */
+      border-radius: 5px; /* 角を丸く設定 */
+      cursor: pointer; /* カーソルをポインターに変更 */
     }
 
     button:hover {
-      background-color: #a30000;
+      background-color: #a30000; /* ホバー時に色を変更 */
     }
 
     .forgot-password {
-      text-align: right;
-      margin-top: -10px;
-      margin-bottom: 15px;
+      text-align: right; /* 右寄せ */
+      margin-top: -10px; /* 上部のマージン */
+      margin-bottom: 15px; /* 下部のマージン */
     }
 
     .forgot-password a {
-      color: #c30000;
-      text-decoration: none;
-      font-size: 0.9em;
+      color: #c30000; /* リンクの色を設定 */
+      text-decoration: none; /* リンクの下線を削除 */
+      font-size: 0.9em; /* フォントサイズを設定 */
     }
 
     .forgot-password a:hover {
-      text-decoration: underline;
+      text-decoration: underline; /* ホバー時に下線を表示 */
+    }
+
+    /* ポップアップのスタイル */
+    .popup {
+      display: none; /* 初期状態は非表示 */
+      position: fixed; /* 固定位置に配置 */
+      top: 0; /* 上部に配置 */
+      left: 0; /* 左端に配置 */
+      width: 100%; /* 幅を100%に設定 */
+      height: 100%; /* 高さを100%に設定 */
+      background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景 */
+      justify-content: center; /* 中央に配置 */
+      align-items: center; /* 垂直方向に中央揃え */
+      z-index: 1000; /* 他の要素の上に表示 */
+    }
+
+    .popup-content {
+      background: white; /* 背景色を白に設定 */
+      padding: 20px; /* 内側のパディング */
+      border-radius: 8px; /* 角を丸く設定 */
+      width: 80%; /* 幅を80%に設定 */
+      max-width: 400px; /* 最大幅を400pxに設定 */
+      text-align: center; /* 中央揃え */
+    }
+
+    .popup-content h2 {
+      margin: 0 0 10px; /* マージンを設定 */
+    }
+
+    .popup-content p {
+      margin: 0 0 20px; /* マージンを設定 */
+    }
+
+    .popup-content button {
+      background-color: #005bac; /* 背景色を設定 */
+      color: white; /* 文字色を白に設定 */
+      border: none; /* 枠線を削除 */
+      padding: 10px 20px; /* 内側のパディング */
+      border-radius: 5px; /* 角を丸く設定 */
+      cursor: pointer; /* カーソルをポインターに変更 */
+    }
+
+    .popup-content button:hover {
+      background-color: #004080; /* ホバー時に色を変更 */
     }
   </style>
 </head>
 <body>
   <!-- ヘッダー -->
   <header class="header">
-    <div class="logo">MySite</div>
+    <div class="logo">MySite</div> <!-- ロゴの表示 -->
     <nav>
       <ul>
-        <li><a href="#">ホーム</a></li>
-        <li><a href="#">ヘルプ</a></li>
-        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">ホーム</a></li> <!-- ホームリンク -->
+        <li><a href="#">ヘルプ</a></li> <!-- ヘルプリンク -->
+        <li><a href="#">お問い合わせ</a></li> <!-- お問い合わせリンク -->
       </ul>
     </nav>
   </header>
 
   <!-- メインコンテンツ -->
   <div class="container">
-    <h2>ログイン</h2>
-    <form class="input-container" onsubmit="handleSubmit(event)">
+    <h2>ログイン</h2> <!-- タイトル -->
+    <form class="input-container" onsubmit="handleSubmit(event)"> <!-- フォーム -->
       <div>
         <label for="user_id">メールアドレスまたはユーザーID</label>
-        <input id="user_id" type="text" name="user_id" placeholder="メールアドレスまたはユーザーIDを入力" value="sample@example.com" required>
+        <input id="user_id" type="text" name="user_id" placeholder="メールアドレスまたはユーザーIDを入力" value="sample@example.com" required> <!-- ユーザーID入力フィールド -->
       </div>
       <div>
         <label for="password">パスワード</label>
-        <input id="password" type="password" name="password" placeholder="パスワードを入力" value="password123" required>
+        <input id="password" type="password" name="password" placeholder="パスワードを入力" value="password123" required> <!-- パスワード入力フィールド -->
       </div>
       <div class="forgot-password">
-        <a href="#">パスワードを忘れましたか？</a>
+        <a onclick="window.location.href='/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage3.html'">パスワードを忘れましたか？</a> <!-- パスワードを忘れた場合のリンク -->
       </div>
       <div class="forgot-password">
-        <a onclick="window.location.href='/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage2.html'" type="submit">新規登録はこちら</a>
+        <a onclick="window.location.href='/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage2.html'" type="submit">新規登録はこちら</a> <!-- 新規登録リンク -->
       </div>
-      <button>ログイン</button>
+      <button id="showPopupButton">ログイン</button> <!-- ログインボタン -->
     </form>
+    
+    <!-- ポップアップ広告 -->
+    <div class="popup" id="popupAd">
+      <div class="popup-content">
+        <p>ログインが完了しました</p> <!-- ログイン完了メッセージ -->
+        <button id="closePopupButton">閉じる</button> <!-- 閉じるボタン -->
+      </div>
+    </div>
   </div>
+
   <script>
-</script>
+    // ボタン要素を取得
+    const showPopupButton = document.getElementById('showPopupButton');
+    const popupAd = document.getElementById('popupAd');
+    const closePopupButton = document.getElementById('closePopupButton');
+
+    // ログインボタンがクリックされた時の処理
+    showPopupButton.addEventListener('click', function(event) {
+        event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+        popupAd.style.display = 'flex'; // ポップアップを表示
+        
+    });
+
+    // ポップアップを閉じる処理
+    closePopupButton.addEventListener('click', function() {
+        popupAd.style.display = 'none'; // ポップアップを非表示
+    });
+  </script>
 </body>
 </html>
