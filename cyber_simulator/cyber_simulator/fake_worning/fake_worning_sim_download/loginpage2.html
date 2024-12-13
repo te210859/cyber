@@ -160,6 +160,15 @@
                     <small>※正しい形式のメールアドレスをご入力ください。</small>
                 </div>
                 <div class="form-group">
+                    <label for="password">パスワード<span class="required">必須</span></label>
+                    <input type="password" id="password" name="password" placeholder="パスワード"value="hitonaminiogoreya" minlength="8" required>
+                    <small>※半角英数8桁以上</small>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">パスワード確認<span class="required">必須</span></label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="パスワードの確認" value="hitonaminiogoreya" minlength="8" required>
+                </div>                
+                <div class="form-group">
                     <label for="zipcode">郵便番号<span class="required">必須</span></label>
                     <input type="text" id="zipcode" name="zipcode" placeholder="例：1000001" maxlength="7" minlength="7" required>
                     <button type="button" id="searchAddress">住所検索</button>
@@ -198,13 +207,13 @@
                         <span> / </span>
                         <select id="expiry-year" name="expiry-year" required>
                             <option value="" disabled selected>年</option>
-                            <option value="2024">2024</option>
                             <option value="2025">2025</option>
                             <option value="2026">2026</option>
                             <option value="2027">2027</option>
                             <option value="2028">2028</option>
                             <option value="2029">2029</option>
                             <option value="2030">2030</option>
+                            <option value="2031">2031</option>
                         </select>
                     </div>
                     <small>記入例：カードの表示「01/24」の場合は「01月2024年」とご入力ください。</small>
@@ -214,7 +223,7 @@
                     <input type="text" id="security-code" name="security-code" maxlength="3" placeholder="カード裏面の3桁" required>
                     <small>カード裏面に印字の3桁の番号をご入力ください。</small>
                 </div>
-                <button type="submit" class="submit-button">次へ進む</button>
+                <button type="submit" class="submit-button">登録完了</button>
             </form>
         </main>
     </div>

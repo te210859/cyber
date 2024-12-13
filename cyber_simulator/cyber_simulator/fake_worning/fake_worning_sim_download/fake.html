@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォーム内容のスクリーンショット</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="capture">
+        <h2>パスワード変更フォーム</h2>
+        <form id="passwordResetForm">
+            <div>
+                <label for="user-id">ユーザーID:</label>
+                <input type="text" id="user-id" name="user-id" required>
+            </div>
+            <div>
+                <label for="new-password">新しいパスワード:</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+            <div>
+                <label for="confirm-password">パスワード確認:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="button" id="screenshotBtn">スクリーンショットを取る</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('screenshotBtn').addEventListener('click', function () {
+            html2canvas(document.getElementById('capture')).then(function (canvas) {
+                // スクリーンショットを画像としてダウンロード
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'screenshot.png';
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>
