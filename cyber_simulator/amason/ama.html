@@ -15,38 +15,40 @@
         <br>
 
         <main class="main">
-            <form action="#" method="POST" autocomplete="off">
-
+            <form id="loginForm" action="#" method="POST" autocomplete="off">
                 <center><h2>ログイン</h2></center>
-                
                 <br>
-
+            
                 <center><p>
                     <h5><label for="mail">メールアドレス</label></h5>
                     <input type="email" name="mail" id="mail" required>
+                    <span class="error-message" id="mailError">メールアドレスを入力してください</span>
                 </p></center>
-
+            
                 <center><p>
-                <h5><label for="pass">パスワード</label></h5>
+                    <h5><label for="pass">パスワード</label></h5>
                     <input type="password" name="pass" id="pass" required>
+                    <span class="error-message" id="passError">パスワードを入力してください</span>
                 </p></center>
-
+            
                 <br>
-
+            
                 <center><p>
                     <input type="checkbox" name="maintain" id="maintain">
                     <label for="maintain">ログイン状態を維持する</label>
                 </p></center>
-
+            
                 <a href="#"><div class="test">パスワードをお忘れですか？</div></a>
-
+            
                 <center><div class="button">
-                    <button>ログイン</button>
+                    <button type="button" onclick="validateForm()" target="_blank">ログイン</button>
                 </div></center>
-
+            
                 <br>
             </form>
         </main>
+
+        <script src="ama.js"></script>
 
     </body>
 </html>

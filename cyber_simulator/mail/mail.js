@@ -2,7 +2,7 @@ const emails = [
     {
         subject: "お荷物お届けのお知らせ",
         from: "example1@domain.com",
-        content: "お客様が不在の為お荷物を持ち帰りました。詳細はこちらにてご確認ください https://"
+        content: 'お客様が不在の為お荷物を持ち帰りました。詳細はこちらにてご確認ください<a href="../cursor/cursor.html" target="_blink">https://amazon.jp</a>'
     },
     {
         subject: "簡単なアルバイトに興味ないですか？",
