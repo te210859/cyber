@@ -155,6 +155,11 @@
             <p>下欄にご入力のうえ、[次へ進む]をクリック（タップ）してください。</p>
             <form id="creditCardForm" class="form">
                 <div class="form-group">
+                    <label for="email">メールアドレス <span class="required">必須</span></label>
+                    <input type="email" id="email" name="email" placeholder="例：example@example.com" required>
+                    <small>※正しい形式のメールアドレスをご入力ください。</small>
+                </div>
+                <div class="form-group">
                     <label for="zipcode">郵便番号<span class="required">必須</span></label>
                     <input type="text" id="zipcode" name="zipcode" placeholder="例：1000001" maxlength="7" minlength="7" required>
                     <button type="button" id="searchAddress">住所検索</button>
