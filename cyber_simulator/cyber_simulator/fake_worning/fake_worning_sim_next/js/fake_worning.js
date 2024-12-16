@@ -54,3 +54,48 @@ window.addEventListener('scroll', function() {
     document.querySelector('header').classList.remove('shrink');
   }
 });
+
+
+
+
+function closeImage(button) {
+  const imageContainer = button.closest('.image-container'); // ボタンの親要素を取得
+  const image = imageContainer.querySelector('.image'); // 親要素内の画像を取得
+  const closeButton = imageContainer.querySelector('.close-btn'); // 親要素内のボタンを取得
+
+  // 画像とボタンを両方とも非表示にする
+  image.classList.add('hidden');
+  closeButton.classList.add('hidden');
+}
+
+// 広告を閉じるための関数
+function closeAd1() {
+  const ad = document.querySelector('.annoying-ad1');
+  const overlay = document.querySelector('.overlay');
+  ad.style.display = 'none';
+  overlay.style.display = 'none';
+}
+
+function closeAd2() {
+  const ad = document.querySelector('.annoying-ad2');
+  const overlay = document.querySelector('.overlay');
+  ad.style.display = 'none';
+  overlay.style.display = 'none';
+}
+
+
+function closeAd3() {
+  const ad = document.querySelector('.annoying-ad3');
+  const overlay = document.querySelector('.overlay');
+  ad.style.display = 'none';
+  overlay.style.display = 'none';
+}
+
+
+// 5秒後に広告を強制的に表示する
+setTimeout(() => {
+  const ad = document.querySelector('.annoying-ad');
+  const overlay = document.querySelector('.overlay');
+  ad.style.display = 'block';
+  overlay.style.display = 'block';
+}, 5000);  // 広告を5秒後に表示

@@ -42,7 +42,7 @@ label, input {
 
 /* 画像にホバー時の効果を追加 */
 .png:hover {
-  transform: scale(1.03); /* 画像を少し拡大 */
+  transform: scale(1.01); /* 画像を少し拡大 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* 影を強調 */
 }
 
@@ -59,7 +59,7 @@ label, input {
   margin-top: 32px;
   box-sizing: border-box;
   border: 1px #dddddd solid;
-  background-color: #cac6c6;
+  background-color: #dbd9d9;
   box-shadow: 4px 4px 20px rgba(0,0,0,0.2);
   width: 40%;
   display: flex;

@@ -220,7 +220,7 @@ body {
   left: 0;
   width: 100%;
   height: 110px;
-  background: rgba(53, 41, 107, 0.8);
+  background: rgba(77, 48, 207, 0.8);
   -webkit-transition: height 0.3s;
   -moz-transition: height 0.3s;
   transition: height 0.3s;
@@ -228,6 +228,7 @@ body {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 影をつける */
   /*overflow: hidden; /* 画像がスライドするときに外に出ないように隠す */
   /*position: relative; /* 画像を重ねて表示させるため */
+  z-index:9999;
 
 }
 
@@ -261,7 +262,7 @@ body {
 .header h1 {
   float: left;
   margin: 0;
-  color: #ff1100;
+  color: #50120d;
   font-family: 'Slabo 27px', serif;
   font-size: 40px;
   text-transform: uppercase;
@@ -284,7 +285,7 @@ body {
 }
 
 /* ホバー時に下線が表示される設定 */
-a::after {
+.header a::after {
   content: ''; /* 擬似要素のコンテンツ */
   position: absolute;
   left: 0;
@@ -456,5 +457,198 @@ h1.makino2 {
   font-family: "Zen Old Mincho", serif;
   font-weight: 400;
   font-style: normal;
-  color: #ff0000;
+  color: #fa4646;
+}
+
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image {
+  width: 300px;  /* 画像の幅 */
+  height: auto;
+  transition: opacity 0.3s ease; /* 画像が消えるときのアニメーション */
+}
+
+.close-btn {
+  position: absolute;
+  top: 22px;
+  right: 1px;
+  font-size: 10px;
+  color: rgb(79, 207, 247);
+  background-color: rgb(243, 242, 242);
+  border: none;
+  padding: 2px 2px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+  /* 画像とボタンを両方非表示にするクラス */
+  .hidden {
+    opacity: 0;  /* 画像を透明に */
+    pointer-events: none;  /* 透明でもクリックできないようにする */
+    visibility: hidden;  /* 画像とボタンを非表示にする */
+}
+
+
+
+/* 広告のスタイル */
+.annoying-ad {
+  position: absolute;
+  top: 90%;
+  left: 10%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 170px;
+  background: url('../png/next.png'); /* ここに画像URLを入力 */
+  background-size: cover;
+  border: 5px solid red;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 11;
+  animation: shake 0.5s infinite alternate, flicker 1s infinite;
+}
+
+.annoying-ad1 {
+  position: absolute;
+  top: 90%;
+  left: 10%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 170px;
+  background: url('../png/next.png'); /* ここに画像URLを入力 */
+  background-size: cover;
+  border: 5px solid red;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 6;
+  animation: shake 0.5s infinite alternate, flicker 1s infinite;
+}
+
+.annoying-ad2 {
+  position: absolute;
+  top: 60%;
+  left: 90%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 170px;
+  background: url('../png/next.png'); /* ここに画像URLを入力 */
+  background-size: cover;
+  border: 5px solid red;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 6;
+  animation: shake 0.5s infinite alternate, flicker 1s infinite;
+}
+
+
+.annoying-ad3 {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 170px;
+  background: url('../png/next.png'); /* ここに画像URLを入力 */
+  background-size: cover;
+  border: 5px solid red;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 6;
+  animation: shake 0.5s infinite alternate, flicker 1s infinite;
+}
+
+
+
+ /* 広告が揺れるアニメーション */
+ /*/@keyframes shake {
+  0% { transform: translateX(-50%) rotate(0); }
+  50% { transform: translateX(-50%) rotate(10deg); }
+  100% { transform: translateX(-50%) rotate(-10deg); }
+}*/
+
+/* 広告が点滅するアニメーション */
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* 広告を強調するクリックボタン */
+.close-btn1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff0000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10000;
+}
+
+.close-btn1:hover {
+  background-color: #cc0000;
+}
+
+/* 広告を強調するクリックボタン */
+.close-btn2 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff0000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10000;
+}
+
+.close-btn2:hover {
+  background-color: #cc0000;
+}
+
+/* 広告を強調するクリックボタン */
+.close-btn3 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff0000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10000;
+}
+
+.close-btn3:hover {
+  background-color: #cc0000;
+}
+
+/* ページ全体を覆うオーバーレイ */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9998;
 }
