@@ -1,133 +1,455 @@
+/* 全体のレイアウト設定 */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
-  display:flex;
+  /* ページの余白をゼロに設定 */
+  font-family: Arial, sans-serif;
+  /* フォントを設定 */
+  display: flex;
+  /* フレックスボックスを使用 */
   flex-direction: column;
-
+  /* 上から下へのレイアウト */
+  min-height: 100vh;
+  /* ページ全体の高さを占める */
+  position: relative;
+  /* ポップアップの絶対配置に対応するため */
+  zoom: 1;
+  /* ズームレベルを1に固定 */
 }
 
+/* ヘッダー */
 header {
   background-color: red;
-  color:yellow;
-  padding-bottom: 10px;
+  /* 背景色を赤に設定 */
+  color: yellow;
+  /* テキスト色を黄色に設定 */
   text-align: center;
+  /* テキストを中央揃え */
+  padding: 10px;
+  /* 内側の余白を設定 */
 }
 
-header h1 {
-  margin: 0;
-}
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 10px 0;
+/* コンテンツ全体のラッパー */
+.content-wrapper {
+  flex: 1;
+  /* 利用可能なスペースを占有 */
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  /* フレックスボックスを使用 */
 }
-#hi{
-  text-align: center;
+
+/* サイドバー共通スタイル */
+.sidebar {
+  width: 600px;
+  /* 固定幅 */
+  background-color: #f0f0f0;
+  /* 背景色を設定 */
+  display: block;
+  /* ブロック要素として表示 */
+  flex-direction: column;
+  /* 画像を縦に並べる */
+  justify-content: flex-start;
+  /* 上に配置 */
+  align-items: center;
+  /* 中央揃え */
+  box-sizing: border-box;
+  /* ボックスモデルを調整 */
+  padding: 10px;
+  /* 内側の余白を設定 */
 }
-nav ul li a {
+
+.sidebar img {
+max-width: 100%;
+/* 親要素に合わせた最大幅 */
+height: 500px; /* 高さを400pxから500pxに増やす */
+cursor: pointer;
+margin-bottom: 30px;
+}
+
+
+.sidebar button {
+  width: 100%;
+  /* ボタンをサイドバー幅に合わせる */
+  padding: 10px;
+  /* 内側の余白を設定 */
+  background-color: #007bff;
+  /* 背景色を設定 */
   color: white;
-  text-decoration: none;
+  /* テキスト色を白に設定 */
+  border: none;
+  /* ボーダーをなしに設定 */
+  cursor: pointer;
+  /* ポインターを手の形に変更 */
+  font-size: 16px;
+  /* フォントサイズを設定 */
+  margin-top: 10px;
+  /* 画像とボタンの間隔を設定 */
 }
 
-/* サイドバー */
-.side {
-  position: sticky; /* スクロールに追従する */
-  top: 70px; /* ヘッダーの高さを考慮 */
-  width: 20%;
-  background-color: rgb(155, 155, 155);
-  padding: 15px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+.sidebar button:hover {
+  background-color: #0056b3;
+  /* ホバー時の背景色を変更 */
 }
 
-.content {
-  margin-left: 20%;
+/* メインコンテンツ */
+.main-content {
+  flex: 1;
+  /* サイドバーを除くスペースを占有 */
   padding: 20px;
+  /* 内側の余白を設定 */
+  box-sizing: border-box;
+  /* ボックスモデルを調整 */
+  display: grid;
+  /* グリッドレイアウトを使用 */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3列のグリッド */
+  gap: 20px;
+  /* グリッドアイテム間の間隔を設定 */
 }
 
-section {
-  padding: auto;
-  margin-left:300px;
-  background-color: white;
-  border-radius: 8px;
+/* メインコンテンツ内の画像とボタン */
+.main-content div {
+  text-align: center;
+  /* テキストを中央揃え */
+  display: flex;
+  /* フレックスボックスを使用 */
+  flex-direction: column;
+  /* 縦に並べる */
+  align-items: center;
+  /* 中央揃え */
+  gap: 10px;
+  /* 画像とボタン間の間隔を設定 */
 }
 
+.main-content img {
+  width: 120px;
+  /* 画像の幅を設定 */
+  height: 120px;
+  /* 画像の高さを揃える */
+  object-fit: cover;
+  /* アスペクト比を維持しながら枠に収める */
+  cursor: pointer;
+  /* 画像をクリック可能にする */
+}
+
+.main-content button {
+  line-height: 40px;
+  /* ボタン内のテキストを縦中央揃え */
+  text-align: center;
+  /* テキストを中央揃え */
+}
+
+.main-content button:hover {
+  background-color: #0056b3;
+  /* ホバー時の背景色を変更 */
+}
+
+/* 右側サイドバーの画像を大きくする */
+.right-sidebar img {
+  object-fit: cover;
+  /* 画像を枠に合わせて表示 */
+}
+
+/* ポップアップ広告のスタイル */
+.popup-ad-overlay {
+  position: fixed;
+  /* 固定位置に配置 */
+  top: 0;
+  /* 上端に配置 */
+  left: 0;
+  /* 左端に配置 */
+  width: 100%;
+  /* 幅を100%に設定 */
+  height: 100%;
+  /* 高さを100%に設定 */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 半透明の黒背景 */
+  display: flex;
+  /* フレックスボックスを使用 */
+  justify-content: center;
+  /* 中央に配置 */
+  align-items: center;
+  /* 中央に配置 */
+  z-index: 1000;
+  /* 他の要素の上に配置 */
+}
+
+/* ポップアップ全体にアニメーションを適用 */
+.popup-ad {
+  position: relative;
+  /* 相対位置に設定 */
+  width: 80%;
+  /* 幅を80%に設定 */
+  max-width: 900px;
+  /* 最大幅を設定 */
+  background-color: #444;
+  /* 背景色を設定 */
+  border-radius: 10px;
+  /* 角を丸くする */
+  overflow: hidden;
+  /* はみ出した部分を隠す */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  /* 影を追加 */
+}
+
+.popup-ad img {
+  width: 100%;
+  /* 画像の幅を100%に設定 */
+  display: block;
+  /* ブロック要素として表示 */
+}
+
+.popup-ad .close-btn {
+  position: absolute;
+  /* 絶対位置を指定 */
+  left: 0.1px;
+  /* 左側にわずかな余白 */
+  background-color: rgb(185, 236, 225);
+  /* 背景色を設定 */
+  color: aqua;
+  /* テキスト色を設定 */
+  border: none;
+  /* ボーダーをなしに設定 */
+  border-radius: 50%;
+  /* 角を丸くする */
+  font-size: 30px;
+  /* フォントサイズを設定 */
+  cursor: pointer;
+  /* ポインターを手の形に変更 */
+  text-align: center;
+  /* テキストを中央揃え */
+  line-height: 25px;
+  /* テキストを縦中央揃え */
+  opacity: 0.375;
+  /* 初期透明度を設定 */
+}
+
+.popup-ad .close-button {
+  position: absolute;
+  /* 絶対位置を指定 */
+  right: 10px;
+  /* 右側に余白を設定 */
+  background-color: rgb(248, 233, 230);
+  /* 背景色を設定 */
+  color: black;
+  /* テキスト色を黒に設定 */
+  border: none;
+  /* ボーダーをなしに設定 */
+  border-radius: 50%;
+  /* 角を丸くする */
+  font-size: 50px;
+  /* フォントサイズを設定 */
+  margin-top: 10px;
+  /* 上に余白を設定 */
+  cursor: pointer;
+  /* ポインターを手の形に変更 */
+  text-align: center;
+  /* テキストを中央揃え */
+  line-height: 25px;
+  /* テキストを縦中央揃え */
+}
+
+.popup-ad .ad-footer {
+  background-color: #888;
+  /* 背景色を設定 */
+  padding: 20px;
+  /* 内側の余白を設定 */
+  text-align: center;
+  /* テキストを中央揃え */
+}
+
+.popup-ad .close-btn:hover {
+  background-color: gray;
+  /* ホバー時の背景色を変更 */
+}
+
+.popup-ad .ad-footer a {
+  color: white;
+  /* テキスト色を白に設定 */
+  font-size: 20px;
+  /* フォントサイズを設定 */
+  text-decoration: none;
+  /* 下線をなしに設定 */
+  font-weight: bold;
+  /* 太字に設定 */
+}
+
+.popup-ad .ad-footer a:hover {
+  text-decoration: underline;
+  /* ホバー時に下線を追加 */
+}
+
+/* フッター */
 footer {
   background-color: #333;
+  /* 背景色を設定 */
   color: white;
+  /* テキスト色を白に設定 */
   text-align: center;
+  /* テキストを中央揃え */
   padding: 10px;
-  position: fixed; /* 固定表示 */
-  width: 100%;
-  bottom: 0; /* ページ下部に固定 */
+  /* 内側の余白を設定 */
 }
 
-/* ボタンのスタイル */
-button{
-  margin-top: 10px; /* 画像とボタンの間に余白を追加 */
-  padding: 10px 20px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007BFF;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-  width:150px;
-  height:75px;
-}
-button:hover {
-  background-color: #0056b3;
-}
-#name {
-  display: flex; /* 横並びにする */
-  justify-content: center; /* 全体を中央揃え */
-  align-items: flex-start; /* 上部揃え */
-  gap: 30px; /* 各画像とボタンの間のスペース */
-}
-
-#name div {
+/* PRボックスのスタイル */
+#mix {
+  border: solid 3px #000;
+  /* ボーダーを追加 */
+  width: 300px;
+  /* 幅を指定 */
+  height: 400px;
+  /* 高さを指定 */
   display: flex;
-  flex-direction: column; /* 縦方向に配置 */
-  align-items: center;    /* 中央揃え */
-  gap: 5px;/* 画像とボタンの間にスペースを追加 */
-  padding-top: 5px;
-  padding-bottom: 5px;
+  /* フレックスボックスを使用 */
+  flex-direction: column;
+  /* 縦に並べる */
+  align-items: center;
+  /* 中央揃え */
+  justify-content: space-between;
+  /* 上下のスペースを均等にする */
+  position: relative;
+  /* PRボックスを絶対配置するために相対位置 */
+  text-align: center;
+  /* テキストを中央に揃える */
+  padding: 10px;
+  /* 内側の余白を設定 */
+  box-sizing: border-box;
+  /* ボーダーとパディングを含めたサイズ計算 */
+  margin-top: 0;
+  /* マージンを設定 */
+  border-radius: 5px;
+  /* 角を丸くする */
 }
 
-#name img {
+/* PRボックス内の絶対配置された要素 */
+#mix .pr-box {
+  position: absolute;
+  /* 絶対位置を指定 */
+  right: 5px;
+  /* 右側にわずかな余白 */
+  bottom: 2.5px;
+  /* 下側にわずかな余白 */
+  background-color: rgba(255, 255, 255, 0.8);
+  /* 白色の半透明背景 */
+  border: solid 1px #000;
+  /* ボーダーを追加 */
+  border-radius: 5px;
+  /* 角を丸くする */
+  padding: 5px;
+  /* 内側の余白を設定 */
+  opacity: 0.05;
+  /* 初期透明度を設定 */
+}
+
+/* マウスホバー時のPRボックス */
+#mix:hover {
+  opacity: 0.7;
+  /* 透明度を70%に */
+}
+
+/* PRボックス内の画像スタイル */
+#mix img {
   width: 100%;
-  height: 250px;
-  object-fit: cover; /* width, heightといっしょに使います */
-  border: 1px solid #111;
+  /* 画像の幅を親要素に合わせる */
+  height: auto;
+  /* 高さは自動で調整 */
+  max-height: 280px;
+  /* 画像の最大高さを指定（必要に応じて調整） */
+  object-fit: cover;
+  /* 画像のアスペクト比を維持しながら枠に収める */
 }
 
-#name button {
-  margin-top: 10px; /* 画像とボタンの間に適切な余白 */
-  padding: 10px 20px;
-  font-size: 14px;
-  width: 150px;
-  height: 100;
+/* PRボックス内のテキストスタイル */
+#mix2 {
+  margin-top: 10px;
+  /* テキストとの間に余白を設定 */
+  margin-bottom: 50px;
+  /* テキストの下に余白を設定 */
+  text-align: left;
+  /* テキストを左揃え */
+  color: red;
+  /* テキスト色を赤に設定 */
 }
-      /* 右サイドバー */
-      #rightside {
-        width: 200px; /* サイドバーの幅 */
-        background-color: #f0f0f0; /* 背景色 */
-        padding: 20px;
-        box-sizing: border-box; /* パディング込みで幅調整 */
-        display: flex;
-        flex-direction: column; /* 中身を縦並び */
-        align-items: center; /* 中央揃え */
-      }
 
-      /* サイドバー内の画像 */
-      #rightside img {
-        max-width: 100%; /* サイドバーの幅内で画像を調整 */
-        height: auto;
-        margin-bottom: 20px; /* 下の余白 */
-      }
+/* リサイズボックスのスタイル */
+#resize {
+  height: 700px;
+  /* 高さを設定 */
+  width: auto;
+  /* 幅は自動で調整 */
+}
+
+/* 画像コンテナのスタイル */
+.image-container {
+  position: relative;
+  /* 子要素の絶対配置の基準 */
+  display: inline-block;
+  /* 必要に応じてサイズ調整 */
+  width: 100%;
+  /* 親要素の幅に合わせる */
+  overflow: hidden;
+  /* コンテンツがはみ出ないように */
+}
+
+.image-container img {
+  display: block;
+  /* 不要な隙間を削除 */
+  width:500px;
+  /* 親要素の幅に合わせる */
+  height: auto;
+  /* 高さを自動調整 */
+}
+
+/* 画像コンテナホバー時の透明度 */
+.image-container:hover {
+  opacity: 0.7;
+  /* 透明度を70%に */
+}
+
+/* フォントサイズの設定 */
+.fontsize {
+  font-size: 25px;
+  /* フォントサイズを設定 */
+}
+
+/* PRラベルのスタイル */
+.pr-label {
+  all: unset;
+  /* すべてのCSSプロパティをリセット */
+  position: absolute;
+  /* 親要素の中で絶対配置 */
+  top: 4px;
+  /* 上端から4pxの位置に配置 */
+  right: 10px;
+  /* 右端から10pxの位置に配置 */
+  background-color: white;
+  /* 半透明の白背景 */
+  color: black;
+  /* テキスト色を黒に設定 */
+  font-weight: bold;
+  /* テキストを太字に */
+  padding: 4px 4px;
+  /* ラベル内の余白 */
+  font-size: 10px;
+  /* ラベルの文字サイズ */
+  opacity: 0.1;
+  /* 初期透明度を設定 */
+  border: solid 1px #000;
+  /* ボーダーを追加 */
+  border-radius: 5px;
+  /* 角を丸くする */
+  z-index: 10;
+  /* 他の要素よりも上に表示 */
+  pointer-events: none;
+  /* ラベルのクリックを無効化 */
+}
+
+/* PRラベルホバー時のスタイル */
+.pr-label:hover {
+  background-color: rgba(255, 0, 0, 0.9);
+  /* ホバー時に背景色を変更 */
+  color: yellow;
+  /* ホバー時にテキスト色を変更 */
+  transform: scale(1.1);
+  /* ホバー時に少し拡大する */
+  transition: all 0.3s ease;
+  /* スムーズなアニメーション */
+}
