@@ -1,0 +1,172 @@
+body {
+   font-family: 'Arial', sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f8f9fa;
+   color: #333;
+   line-height: 1.5;
+}
+
+.header {
+   background: #007bff;
+   color: #fff;
+   text-align: center;
+   padding: 15px 0;
+   font-size: 1.5rem;
+   font-weight: bold;
+   border-bottom: 3px solid #0056b3;
+}
+
+#timeline {
+            width: 90%;
+            max-width: 800px;
+            height: 60vh;
+            margin: 30px auto;
+            background: #f7f7f7;
+            border-radius: 20px;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+   display: flex;
+   align-items: center;
+}
+
+.message.left {
+   justify-content: flex-start;
+}
+
+.message.left .bubble {
+   background: #dadada;
+   color: #000;
+   border-radius: 10px 10px 10px 0;
+   padding: 12px;
+   max-width: 60%;
+}
+
+.message.right {
+   justify-content: flex-end;
+}
+
+.message.right .bubble {
+   background: #d4edda;
+   color: #155724;
+   border-radius: 10px 10px 0 10px;
+   padding: 12px;
+   max-width: 60%;
+}
+
+.bubble {
+   padding: 12px 15px;
+   border-radius: 10px;
+   max-width: 60%;
+   word-wrap: break-word;
+   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.choices {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   margin: 10px auto;
+   width: 100%;
+   opacity: 0;
+   transition: opacity 0.5s ease-in-out;
+}
+
+
+.choices.show {
+   opacity: 1;
+}
+
+.choice {
+   margin: 5px 0;
+   align-self: flex-end;
+   background: #007bff;
+   color: white;
+   border: none;
+   padding: 10px 60px;
+   border-radius: 10px;
+   cursor: pointer;
+   font-size: 1rem;
+   transition: background 0.3s ease;
+}
+
+.choice:hover {
+   background: #0056b3;
+}
+
+.reset-button {
+   display: block;
+   margin: 20px auto;
+   background-color: #28a745;
+   color: white;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   font-size: 1rem;
+   cursor: pointer;
+   transition: background 0.3s ease;
+}
+
+.reset-button:hover {
+   transform: scale(1.05);
+   background: linear-gradient(135deg, #10b981, #2563eb);
+}
+
+#result {
+   width: 50%;
+   margin: 20px auto;
+   padding: 15px;
+   background: #ffffff;
+   border-radius: 10px;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#result h2 {
+   margin-top: 0;
+   color: #333;
+   text-align: center;
+}
+
+#resultContent p {
+   margin: 5px 0;
+   font-size: 1rem;
+   color: #555;
+}
+
+.speaker-label {
+   font-size: 0.9em;
+   color: #6c757d;
+   margin-bottom: 4px;
+   display: block;
+}
+
+.message.right .speaker-label {
+   text-align: right;
+}
+
+.notice {
+   background-color: #f8d7da;
+   padding: 10px;
+   border: 1px solid #f5c6cb;
+   margin-bottom: 15px;
+   color: #721c24;
+   text-align: center;
+   border-radius: 5px;
+}
+.message.left .speaker-label::before {
+   content: '';
+   background-image: url('../instagram-default-profile-picture-11562973083brycehrmyv.webp');
+   background-size: cover;
+   width: 40px;
+   height: 40px;
+   display: inline-block;
+   margin-right: 10px;
+   border-radius: 50%;
+}
