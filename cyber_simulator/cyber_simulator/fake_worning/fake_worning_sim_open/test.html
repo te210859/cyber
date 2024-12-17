@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自然災害について</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      /* コンテナ */
+      .container {
+        width: 70%; /* コンテンツ幅を縮小 */
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      header h1 {
+        font-size: 2.5em;
+        color: #2c3e50;
+      }
+
+      header p {
+        font-size: 1.2em;
+        color: #7f8c8d;
+      }
+
+      .content {
+        font-size: 1.1em;
+        color: #333;
+      }
+
+      .content h2 {
+        font-size: 1.8em;
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      /* 災害の種類 */
+      .disaster-types {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .disaster-type {
+        width: 30%;
+        background-color: #ecf0f1;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .disaster-type h3 {
+        font-size: 1.5em;
+        color: #e74c3c;
+      }
+
+      .disaster-type p {
+        font-size: 1.1em;
+        color: #7f8c8d;
+      }
+
+      /* インタラクティブセクション */
+      .interactive-section {
+        background-color: #3498db;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+        border-radius: 10px;
+      }
+
+      .interactive-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+      }
+
+      .interactive-section button {
+        padding: 15px 30px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        font-size: 1.2em;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      .interactive-section button:hover {
+        background-color: #c0392b;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #2c3e50;
+        color: white;
+        margin-top: 40px;
+      }
+
+      footer p {
+        font-size: 1.2em;
+      }
+
+      /* 左側のサイドに固定された画像広告 */
+#left-sidebar-ad {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 250px;
+  height: auto;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  position: relative; /* 追加 */
+}
+
+#left-sidebar-ad img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 右側のサイドに固定された画像広告 */
+#sidebar-ad {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  width: 250px;
+  height: auto;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  position: relative; /* 追加 */
+}
+
+#sidebar-ad img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 下部固定画像広告 */
+#bottom-ad {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: url('bottom-ad-image.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  position: relative; /* 追加 */
+}
+
+#bottom-ad img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 閉じるボタン */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5em;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* 追加 */
+}
+
+    </style>
+    <script>
+      // 広告を閉じる関数
+      function closeAd(adId) {
+        document.getElementById(adId).style.display = 'none';
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>自然災害とは？</h1>
+        <p>自然災害の種類やその影響、そして対策方法について学びましょう。</p>
+      </header>
+
+      <div class="content">
+        <h2>自然災害の種類</h2>
+        <div class="disaster-types">
+          <div class="disaster-type">
+            <h3>地震</h3>
+            <p>
+              地震は、地球内部でのプレート運動や火山活動によって引き起こされます。建物の崩壊や津波などを引き起こすことがあります。
+            </p>
+          </div>
+          <div class="disaster-type">
+            <h3>津波</h3>
+            <p>
+              津波は、海底の地震や火山活動によって発生し、大きな波となって沿岸に押し寄せます。大規模な浸水被害をもたらします。
+            </p>
+          </div>
+          <div class="disaster-type">
+            <h3>台風</h3>
+            <p>
+              台風は強風と豪雨を伴い、特に沿岸部や低地に大きな被害を与えます。洪水や土砂崩れを引き起こすことがあります。
+            </p>
+          </div>
+        </div>
+
+        <h2>自然災害の影響</h2>
+        <p>
+          自然災害は、物理的な損害だけでなく、生命や生活に大きな影響を与えます。住宅の破壊、インフラの崩壊、避難所の不足、経済的な影響など、多方面にわたります。
+        </p>
+
+        <h2>自然災害への備えと対策</h2>
+        <p>自然災害に備えるためには、以下のような対策が重要です：</p>
+        <ul>
+          <li>避難場所や避難経路の確認</li>
+          <li>非常用持ち出し袋の準備</li>
+          <li>家族間での連絡方法の確認</li>
+          <li>災害時の情報収集手段の確保</li>
+        </ul>
+
+        <div class="interactive-section">
+          <h2>自然災害情報を確認する</h2>
+          <p>
+            自然災害に関する最新情報を確認するために、以下のボタンをクリックしてください。
+          </p>
+          <button
+            onclick="window.location.href='https://www.jma.go.jp/jma/index.html'"
+          >
+            気象庁公式サイトへ
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2024 自然災害情報サイト</p>
+      </footer>
+    </div>
+
+    <!-- 左側に固定された画像広告 -->
+    <div id="left-sidebar-ad">
+      <img src="自然.png" alt="左側広告" />
+      <button class="close-btn" onclick="closeAd('left-sidebar-ad')">×</button>
+    </div>
+
+    <!-- 右側に固定された画像広告 -->
+    <div id="sidebar-ad">
+      <img src="Open.png" alt="右側広告" />
+      <button class="close-btn" onclick="closeAd('sidebar-ad')">×</button>
+    </div>
+
+    <!-- 下部固定画像広告 -->
+    <div id="bottom-ad">
+      <button class="close-btn" onclick="closeAd('bottom-ad')">×</button>
+      <img src="浸水.png" alt="下側広告" />
+    </div>
+  </body>
+</html>

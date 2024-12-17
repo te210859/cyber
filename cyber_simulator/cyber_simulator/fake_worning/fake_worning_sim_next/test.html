@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像に閉じるボタン</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image {
+            width: 300px;  /* 画像の幅 */
+            height: auto;
+            transition: opacity 0.3s ease; /* 画像が消えるときのアニメーション */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;  /* ボタンを画像の上部から10pxの位置に配置 */
+            right: 10px;  /* ボタンを画像の右端から10pxの位置に配置 */
+            font-size: 30px;
+            color: white;  /* ×の色を白に */
+            background-color: rgba(0, 0, 0, 0.5);  /* 背景色を半透明の黒に */
+            border: none;  /* 枠線なし */
+            padding: 8px 12px;  /* ボタンの内側の余白（四角くするため） */
+            cursor: pointer;  /* マウスカーソルをポインターに */
+            z-index: 10;  /* ボタンが画像の上に表示されるように */
+        }
+
+        .close-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);  /* ホバー時に背景色を少し濃く */
+        }
+
+        /* 画像とボタンを両方非表示にするクラス */
+        .hidden {
+            opacity: 0;  /* 画像を透明に */
+            pointer-events: none;  /* 透明でもクリックできないようにする */
+            visibility: hidden;  /* 画像とボタンを非表示にする */
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="png/次ぺ.png" alt="Image" class="image"> <!-- 画像ファイルを適切なパスに変更 -->
+        <span class="close-btn" onclick="closeImage()">×</span> <!-- ×ボタン -->
+    </div>
+    <div class="image-container">
+      <img src="png/次ぺ.png" alt="Image" class="image"> <!-- 画像ファイルを適切なパスに変更 -->
+      <span class="close-btn" onclick="closeImage()">×</span> <!-- ×ボタン -->
+  </div>
+
+    <script>
+        function closeImage() {
+            const image = document.querySelector('.image');
+            const closeButton = document.querySelector('.close-btn');
+
+            // 画像とボタンを両方とも非表示にする
+            image.classList.add('hidden');
+            closeButton.classList.add('hidden');
+        }
+    </script>
+
+
+
+
+
+    <!-- インスクロール広告 -->
+    <div id="ad-banner">
+      <button class="close-btn" onclick="closeAd()">×</button>
+      <p>
+        このページはサイバー攻撃に関する情報を提供しています。セキュリティの向上をお考えなら、<a
+          href="next_page.html"
+          class="spam"
+          >次のページ</a
+          >をご覧ください！
+        </p>
+      </div>
+
+      <!-- サイドバー広告 -->
+      <div id="sidebar-ad">
+        <button class="close-btn" onclick="closeSidebarAd()">×</button>
+        <p>
+          セキュリティ強化のために、<a href="next_page.html" class="spam">次のページ</a>をご覧ください！
+        </p>
+      </div>
+
+      <!-- ポップアップ広告 -->
+      <div id="popup-ad">
+        <button class="close-btn" onclick="closePopupAd()">×</button>
+        <p>
+          今すぐ次のページでさらに詳しい情報を見てください！
+          <a href="next_page.html" class="spam">次のページ</a>
+        </p>
+      </div>
+    </div>
+
+
+    
+</body>
+</html>

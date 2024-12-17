@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物理演算ゲーム</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; background-color: #000; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script>
+    let player;
+    let enemies = [];
+    let items = [];
+    let bullets = [];
+    let gameOver = false;
+    let score = 0;
+    let life = 3;
+    let boss;
+    let bossHealth = 50; // ボスの初期体力
+
+    // サウンドの準備
+    const jumpSound = new Howl({ src: ['jump.mp3'] });
+    const hitSound = new Howl({ src: ['hit.mp3'] });
+    const itemSound = new Howl({ src: ['item.mp3'] });
+    const bgMusic = new Howl({ src: ['background_music.mp3'], loop: true, volume: 0.5 });
+
+    function setup() {
+      createCanvas(windowWidth, windowHeight);
+      player = new Player(width / 2, height - 100);
+      bgMusic.play();
+    }
+
+    function draw() {
+      background(0);
+      if (gameOver) {
+        displayGameOver();
+        return;
+      }
+
+      // プレイヤーの描画と移動
+      player.update();
+      player.show();
+
+      // 敵の更新
+      for (let enemy of enemies) {
+        enemy.update();
+        enemy.show();
+        if (player.collidesWith(enemy)) {
+          hitSound.play();
+          life--;
+          if (life <= 0) {
+            gameOver = true;
+          }
+        }
+      }
+
+      // アイテムの更新
+      for (let item of items) {
+        item.update();
+        item.show();
+        if (player.collidesWith(item)) {
+          itemSound.play();
+          score += 10;
+          item.remove();
+        }
+      }
+
+      // 球の更新と表示
+      for (let bullet of bullets) {
+        bullet.update();
+        bullet.show();
+
+        // 球と敵の衝突判定
+        for (let i = enemies.length - 1; i >= 0; i--) {
+          if (bullet.collidesWith(enemies[i])) {
+            enemies.splice(i, 1); // 敵を削除
+            score += 50; // 敵を破壊した際に得点
+            bullet.remove(); // 球を削除
+          }
+        }
+
+        // ボスとの衝突判定
+        if (boss && bullet.collidesWith(boss)) {
+          bullet.remove();
+          bossHealth--; // ボスの体力を減らす
+          if (bossHealth <= 0) {
+            boss = null; // ボスを倒したら削除
+            score += 500; // ボス撃破で得点
+          }
+        }
+      }
+
+      // スコアとライフの表示
+      fill(255);
+      textSize(32);
+      text("Score: " + score, 30, 50);
+      text("Life: " + life, 30, 100);
+
+      // ボスが存在する場合にボスの描画
+      if (boss) {
+        boss.show();
+        drawBossHealthBar(); // ボスの体力バー
+      }
+    }
+
+    function keyPressed() {
+      if (keyCode === 32) {
+        player.jump();
+        jumpSound.play();
+      } else if (keyCode === LEFT_ARROW) {
+        player.move(-1);
+      } else if (keyCode === RIGHT_ARROW) {
+        player.move(1);
+      } else if (key === 'f' || key === 'F') {
+        bullets.push(new Bullet(player.x + player.size / 2, player.y));
+      }
+    }
+
+    function keyReleased() {
+      if (keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW) {
+        player.move(0);
+      }
+    }
+
+    function displayGameOver() {
+      fill(255, 0, 0);
+      textSize(64);
+      text("Game Over", width / 2 - 160, height / 2);
+      textSize(32);
+      text("Press R to Retry", width / 2 - 120, height / 2 + 50);
+      if (keyIsPressed && key === 'r') {
+        resetGame();
+      }
+    }
+
+    function resetGame() {
+      gameOver = false;
+      score = 0;
+      life = 3;
+      enemies = [];
+      items = [];
+      bullets = [];
+      boss = null;
+      bossHealth = 50;
+      player = new Player(width / 2, height - 100);
+      bgMusic.play();
+    }
+
+    // プレイヤークラス
+    class Player {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = 50;
+        this.velX = 0;
+        this.velY = 0;
+        this.gravity = 0.5;
+        this.lift = -15;
+      }
+
+      jump() {
+        if (this.y === height - this.size) {
+          this.velY = this.lift;
+        }
+      }
+
+      move(dir) {
+        this.velX = dir * 5;
+      }
+
+      update() {
+        this.velY += this.gravity;
+        this.y += this.velY;
+        this.x += this.velX;
+
+        if (this.y > height - this.size) {
+          this.y = height - this.size;
+          this.velY = 0;
+        }
+
+        this.x = constrain(this.x, 0, width - this.size);
+      }
+
+      show() {
+        fill(255);
+        rect(this.x, this.y, this.size, this.size);
+      }
+
+      collidesWith(other) {
+        return this.x < other.x + other.size &&
+               this.x + this.size > other.x &&
+               this.y < other.y + other.size &&
+               this.y + this.size > other.y;
+      }
+    }
+
+    // 球クラス
+    class Bullet {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = 10;
+        this.velY = -10;
+      }
+
+      update() {
+        this.y += this.velY;
+      }
+
+      show() {
+        fill(255, 255, 0);
+        ellipse(this.x, this.y, this.size, this.size);
+      }
+
+      remove() {
+        bullets.splice(bullets.indexOf(this), 1);
+      }
+
+      collidesWith(enemy) {
+        return this.x < enemy.x + enemy.size &&
+               this.x + this.size > enemy.x &&
+               this.y < enemy.y + enemy.size &&
+               this.y + this.size > enemy.y;
+      }
+    }
+
+    // 敵クラス
+    class Enemy {
+      constructor() {
+        this.x = random(width);
+        this.y = -50;
+        this.size = 50;
+        this.velY = 3;
+      }
+
+      update() {
+        this.y += this.velY;
+        if (this.y > height) {
+          this.y = -50;
+          this.x = random(width);
+        }
+      }
+
+      show() {
+        fill(255, 0, 0);
+        rect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    // アイテムクラス
+    class Item {
+      constructor() {
+        this.x = random(width);
+        this.y = -50;
+        this.size = 30;
+        this.velY = 2;
+      }
+
+      update() {
+        this.y += this.velY;
+        if (this.y > height) {
+          this.y = -50;
+          this.x = random(width);
+        }
+      }
+
+      show() {
+        fill(0, 255, 0);
+        ellipse(this.x, this.y, this.size, this.size);
+      }
+
+      remove() {
+        items.splice(items.indexOf(this), 1);
+      }
+    }
+
+    // ボスクラス
+    class Boss {
+      constructor() {
+        this.x = width / 2;
+        this.y = 200; // ボスの位置を下げる
+        this.size = 100;
+        this.velX = 2;
+      }
+
+      update() {
+        this.x += this.velX;
+        if (this.x < 0 || this.x > width - this.size) {
+          this.velX *= -1;
+        }
+
+        // ランダムで敵を生成
+        if (random() < 0.05) {
+          enemies.push(new Enemy());
+        }
+      }
+
+      show() {
+        fill(255, 0, 255);
+        rect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    // ボスの体力バーの描画
+    function drawBossHealthBar() {
+      fill(255, 0, 0);
+      rect(width / 2 - 100, 20, 200, 20);
+      fill(0, 255, 0);
+      rect(width / 2 - 100, 20, (200 * bossHealth) / 50, 20);
+    }
+
+    // 敵とアイテムの定期生成
+    setInterval(() => {
+      if (!gameOver) {
+        if (score >= 1000 && !boss) {
+          boss = new Boss(); // スコア1000でボス出現
+        }
+        if (!boss) {  // ボスがいない時に敵を生成
+          enemies.push(new Enemy());
+        }
+        if (random() < 0.5) items.push(new Item());
+      }
+    }, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </script>
+</body>
+</html>

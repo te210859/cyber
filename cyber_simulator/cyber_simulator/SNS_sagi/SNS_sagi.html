@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ホームページ</title>
+    <link rel="stylesheet" href="/src/style.css" />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+        /* ボタンを縦に並べる */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* 縦並びにする */
+            gap: 20px; /* ボタン間にスペースを持たせる */
+        }   
+
+        /* ボタンの基本スタイル */
+        .button-container button{
+            background: #eee;
+            border-radius: 9999px;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 250px;
+            padding: 10px 25px;
+            font-family: 'Noto Sans Japanese';
+            color: #333333;
+            line-height: 1.8;
+            text-decoration: none;
+            transition: 0.3s ease-in-out;
+            font-weight: 500;
+        }
+        .button-container button:hover {
+            background: #333333;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 30%);
+        }
+        .button-container button:after {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-top: 3px solid #333333;
+            border-right: 3px solid #333333;
+            transform: rotate(45deg) translateY(-50%);
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            border-radius: 1px;
+            transition: 0.3s ease-in-out;
+        }
+        .button-container button:after {
+            border-color: #fff;
+        }
+
+        body {
+            vertical-align: middle;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        /* 下のボタン2つのスタイル */
+        .button1, .button2 {
+            background: #eee; /* 上のボタンと色を統一 */
+            color: #333333;
+            border-radius: 9999px;
+            padding: 15px 30px; /* サイズ拡大 */
+            font-family: 'Noto Sans Japanese';
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 20px 0; /* 余白を追加 */
+            font-size: 1.2em; /* フォントサイズの拡大 */
+        }
+
+        .button1:hover, .button2:hover {
+            background: #333333; /* 上のボタンとホバー時の色を統一 */
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .button i {
+            font-size: 50px; /* アイコンサイズ */
+            margin-right: 10px; /* アイコンとテキストの間に少しスペース */
+        }
+
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>SNS型詐欺体験</h1>
+      <div class="button-container">
+   
+        <button
+          class="button"
+          onclick="location.href='SNS型投資詐欺htmlのリンク'"
+        >
+          SNS型投資詐欺を体験する
+        </button>
+        <button
+          class="button"
+          onclick="location.href='SNS型ロマンス詐欺htmlのリンク'"
+        >
+          SNS型ロマンス詐欺を体験する
+        </button>
+        <button
+          class="button"
+          onclick="location.href='闇バイト応募htmlのリンク'"
+        >
+          闇バイト応募を体験する
+        </button>
+       
+      </div>
+
+      <!-- 下の2つのボタンに余白を追加、サイズ拡大、色を統一 -->
+      <button class="button1" onclick="location.href='１つ前htmlのリンク'">
+        １つ前のページへ
+        <i class="fas fa-reply"></i>
+      </button>
+      <button class="button2" onclick="location.href='体験一覧htmlのリンク'">
+        体験一覧画面へ
+        <i class="fas fa-home"></i>
+      </button>
+
+    </div>
+  </body>
+</html>

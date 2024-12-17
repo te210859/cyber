@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自然災害について</title>
+    <link rel="stylesheet" href="css/fake_worning.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>自然災害とは？</h1>
+        <p>自然災害の種類やその影響、そして対策方法について学びましょう。</p>
+      </header>
+
+      <div class="content">
+        <h2>自然災害の種類</h2>
+        <div class="disaster-types">
+          <div class="disaster-type">
+            <h3>地震</h3>
+            <p>
+              地震は、地球内部でのプレート運動や火山活動によって引き起こされます。建物の崩壊や津波などを引き起こすことがあります。
+            </p>
+          </div>
+          <div class="disaster-type">
+            <h3>津波</h3>
+            <p>
+              津波は、海底の地震や火山活動によって発生し、大きな波となって沿岸に押し寄せます。大規模な浸水被害をもたらします。
+            </p>
+          </div>
+          <div class="disaster-type">
+            <h3>台風</h3>
+            <p>
+              台風は強風と豪雨を伴い、特に沿岸部や低地に大きな被害を与えます。洪水や土砂崩れを引き起こすことがあります。
+            </p>
+          </div>
+        </div>
+
+        <h2>自然災害の影響</h2>
+        <p>
+          自然災害は、物理的な損害だけでなく、生命や生活に大きな影響を与えます。住宅の破壊、インフラの崩壊、避難所の不足、経済的な影響など、多方面にわたります。
+        </p>
+
+        <h2>自然災害への備えと対策</h2>
+        <p>自然災害に備えるためには、以下のような対策が重要です：</p>
+        <ul>
+          <li>避難場所や避難経路の確認</li>
+          <li>非常用持ち出し袋の準備</li>
+          <li>家族間での連絡方法の確認</li>
+          <li>災害時の情報収集手段の確保</li>
+        </ul>
+
+        <div class="interactive-section">
+          <h2>自然災害情報を確認する</h2>
+          <p>
+            自然災害に関する最新情報を確認するために、以下のボタンをクリックしてください。
+          </p>
+          <button
+            onclick="showMessage()">
+            開く
+          </button>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2024 自然災害情報サイト</p>
+      </footer>
+    </div>
+
+    <!-- 左側に固定された画像広告 -->
+    <div id="left-sidebar-ad">
+      <img src="png/自然.png" alt="左側広告" />
+      <button class="close-btn1" onclick="closeAd('left-sidebar-ad')">×</button>
+    </div>
+
+    <!-- 右側に固定された画像広告 -->
+    <div id="sidebar-ad">
+      <img src="png/健康.png" alt="右側広告" />
+      <button class="close-btn1" onclick="closeAd('sidebar-ad')">×</button>
+    </div>
+
+    <!-- 下部固定画像広告 -->
+    <div id="bottom-ad">
+      <button class="close-btn" onclick="closeAd('bottom-ad')">×</button>
+      <img src="png/浸水.png" alt="下側広告" />
+    </div>
+
+    <script src="js/fake_worning.js"></script>
+  </body>
+</html>
