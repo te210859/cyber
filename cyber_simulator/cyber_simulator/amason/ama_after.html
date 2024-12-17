@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情報が盗まれました</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-image: url("amazon.png");
+            background-size: cover; /* 背景画像を画面いっぱいに拡大 */
+            background-position: center center; /* 背景画像を画面の中心に配置 */
+            background-attachment: fixed; /* スクロール時に背景画像が動かないように */
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+ 
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: #aaffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+ 
+        h1 {
+            font-size: 28px;
+            color: #721c24; /* 赤色のタイトル */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+ 
+        .message {
+            font-size: 16px;
+            color: #721c24; /* 赤色のテキスト */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+ 
+        .note {
+            border: 1px solid #f5c6cb; /* 薄い赤の枠線 */
+            background-color: #f8d7da; /* 薄い赤の背景 */
+            color: #721c24; /* 赤色のテキスト */
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+ 
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+ 
+        .footer a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+ 
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>警告：情報が盗まれました</h1>
+        <div class="message">
+            あなたのアカウントの情報が盗まれた可能性があります。直ちに次のステップを実行してください。
+        </div>
+        <div class="note">
+            <p><strong>取るべき行動：</strong></p>
+            <ul>
+                <li>パスワードを直ちに変更してください。</li>
+                <li>不審なアクティビティがないか、アカウントを確認してください。</li>
+                <li>セキュリティソフトウェアを使用してデバイスをスキャンしてください。</li>
+                <li>もし不正アクセスが確認された場合は、関係機関に報告してください。</li>
+            </ul>
+        </div>
+        <div class="footer">
+            <p><a href="ama.html">ログインページに戻る</a></p>
+        </div>
+    </div>
+</body>
+</html>
