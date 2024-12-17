@@ -333,7 +333,7 @@ footer {
   /* ボーダーを追加 */
   border-radius: 5px;
   /* 角を丸くする */
-  padding: 5px;
+  padding: 3px;
   /* 内側の余白を設定 */
   opacity: 0.05;
   /* 初期透明度を設定 */
@@ -341,7 +341,7 @@ footer {
 
 /* マウスホバー時のPRボックス */
 #mix:hover {
-  opacity: 0.7;
+  opacity: 0.4;
   /* 透明度を70%に */
 }
 
@@ -365,8 +365,9 @@ footer {
   /* テキストの下に余白を設定 */
   text-align: left;
   /* テキストを左揃え */
-  color: red;
+  color:black;
   /* テキスト色を赤に設定 */
+  font-weight:bold;
 }
 
 /* リサイズボックスのスタイル */
@@ -400,8 +401,8 @@ footer {
 
 /* 画像コンテナホバー時の透明度 */
 .image-container:hover {
-  opacity: 0.7;
-  /* 透明度を70%に */
+  opacity: 0.4;
+  /* 透明度を40%に */
 }
 
 /* フォントサイズの設定 */
