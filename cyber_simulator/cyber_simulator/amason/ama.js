@@ -22,6 +22,6 @@ function validateForm() {
 
     if (valid) {
         // 入力が有効な場合はページ遷移
-        window.location.href = '../cursor/cursor.html';
+        window.location.href = 'ama_after.html';
     }
 }
