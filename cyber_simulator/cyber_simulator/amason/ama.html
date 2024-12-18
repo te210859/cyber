@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="ama.css">
+        <title>Amason</title>
+    </head>
+
+    <body>
+
+        <header class="header">
+            <center><h1>Amason</h1><h4>.co.jp</h4></center>
+        </header>
+
+        <br>
+
+        <main class="main">
+            <form id="loginForm" action="#" method="POST" autocomplete="off">
+                <center><h2>ログイン</h2></center>
+                <br>
+            
+                <center><p>
+                    <h5><label for="mail">メールアドレス</label></h5>
+                    <input type="email" name="mail" id="mail" value="example@sample.com" required>
+                    <span class="error-message" id="mailError">メールアドレスを入力してください</span>
+                </p></center>
+            
+                <center><p>
+                    <h5><label for="pass">パスワード</label></h5>
+                    <input type="password" name="pass" id="pass" required>
+                    <span class="error-message" id="passError">パスワードを入力してください</span>
+                </p></center>
+            
+                <br>
+            
+                <center><p>
+                    <input type="checkbox" name="maintain" id="maintain">
+                    <label for="maintain">ログイン状態を維持する</label>
+                </p></center>
+            
+                <a href="#"><div class="test">パスワードをお忘れですか？</div></a>
+            
+                <center><div class="button">
+                    <button type="button" onclick="validateForm()">ログイン</button>
+                </div></center>
+            
+                <br>
+            </form>
+        </main>
+
+        <script src="ama.js"></script>
+
+    </body>
+</html>

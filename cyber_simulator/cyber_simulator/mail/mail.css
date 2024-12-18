@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body {
+    overflow: hidden;
+  }
+
+body {
+    padding-top: 50px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.app {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    margin-top: 20px;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #d9d9d9;
+    color: black;
+    padding: 10px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#emailList {
+    list-style: none;
+    padding: 0;
+}
+
+#emailList li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #888;
+    white-space: nowrap;        /* 折り返さない */
+    overflow: hidden;          /* はみ出した部分を隠す */
+    text-overflow: ellipsis;   /* 省略記号を表示 */
+}
+
+#emailList li:hover {
+    background-color: #aaa;
+}
+
+.emailViewer {
+    width: 75%;
+    padding: 20px;
+    background-color: #fff;
+    border-left: 2px solid #ddd;
+}
+
+#emailContent {
+    margin-top: 20px;
+}
+
+/* メールアドレスを小さく、薄くデザイン */
+.email-address {
+    font-size: 0.8em;   /* フォントサイズを小さく */
+    color: #555;        /* 色を薄く */
+}

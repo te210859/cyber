@@ -1,0 +1,345 @@
+html,body {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100vh; /* ビューポートの高さに合わせる */
+  width: 100vw; /* ビューポートの幅に合わせる */
+}
+
+/* スクリーンの設定 */
+.screen {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.first_screen {
+  position: absolute;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  font-family: Arial, sans-serif;
+  color: red;
+  flex-direction: column;
+  perspective: 1500px;  /* 3D空間の奥行き設定 */
+}
+
+.first_screen.active {
+  opacity: 0;
+  pointer-events: none;
+  display: none; /* .first_screenを非表示に */
+  z-index: -1;
+}
+
+/* windows_screen.png 以外の画像にカーソルを表示する */
+.relative.active img:not([src="tell.png"]) {
+  cursor: pointer; /* それ以外の画像にはカーソルを表示 */
+}
+
+/* windows_screen.png 上でカーソルを隠す */
+.relative.active img[src="tell.png"] {
+  cursor: none; /* windows_screen.png の上ではカーソルを隠す */
+}
+
+.relative {
+  opacity: 0;
+  pointer-events: none;
+  cursor: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.relative.active {
+  opacity: 1;
+  pointer-events: auto;
+  background-image: url("../windows_screen.png"), url("../red_screen.png");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  animation: backgroundBlink 1.5s infinite;
+  z-index: 1;
+}
+
+@keyframes backgroundBlink {
+  0% {
+    background-image: url("../windows_screen.png");
+  }
+  50% {
+    background-image: url("../red_screen.png");
+  }
+  100% {
+    background-image: url("../windows_screen.png");
+  }
+}
+
+.windows {
+  margin-top: 5%;
+}
+
+.relative.active img.absolute {
+  position: absolute;
+  top: 380px;
+  left: 29%;
+  transform: translate(-50%, -50%);
+  animation: scaleAnimation 3s ease-in-out infinite; /* アニメーション設定 */
+}
+
+/* 拡大縮小のアニメーション */
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1); /* 初期状態（元の大きさ） */
+  }
+  50% {
+    transform: scale(1.2); /* 50%のところで少し拡大 */
+  }
+  100% {
+    transform: scale(1); /* 最後は元の大きさに戻す */
+  }
+}
+
+/* アニメーションの設定 */
+.updown {
+  animation-name: UpDown;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  position: absolute;
+  top: 68%;
+  left: 78%;
+}
+
+.setsumei {
+  position: absolute;
+  cursor: pointer;
+  background-color: orange;
+  border-radius: 25px;
+  max-width: 530px;
+  padding: 10px;
+  margin-top: 40px;
+  margin-left: 10px;
+  opacity: 0; /* 初期状態では非表示 */
+  animation: none; /* 初期状態ではアニメーションを無効 */
+}
+
+@keyframes UpDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+@keyframes float {
+  0% {
+    top: 30px;
+    opacity: 0;
+  }
+  100% {
+    top: 0; /* フロートさせる高さ */
+    opacity: 1; /* 最終的に不透明にする */
+  }
+}
+
+.warning-text {
+  position: absolute;
+  font-size: 400px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  animation: blink 1s infinite; /* WARNINGテキストが点滅 */
+  margin-bottom: 20px;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.symbols {
+  position: absolute;  /* 親要素の位置を基準にする */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+
+.symbol {
+  font-size: 700px;
+  font-weight: bold;
+  position: absolute;  /* 親要素内で絶対位置 */
+  animation: rotateY 3s infinite linear; /* 3D回転エフェクト (y軸) */
+  transform-origin: center;
+  text-shadow: 
+    3px 3px 0px rgba(0, 0, 0, 0.7), /* 右下方向 */
+    -3px -3px 0px rgba(0, 0, 0, 0.7), /* 左上方向 */
+    3px -3px 0px rgba(0, 0, 0, 0.7), /* 右上方向 */
+    -3px 3px 0px rgba(0, 0, 0, 0.7); /* 左下方向 */
+}
+
+.emergency {
+  position:absolute;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+  border: 5px solid white;
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+  padding: 10px;
+  margin-top: 300px;
+  opacity: 0; /* 初期状態では非表示 */
+  animation: float1 2s ease-in-out forwards, blink-border 1s infinite; /* アニメーションの設定 */
+  animation-delay: 2s; /* 10秒後にアニメーションが開始 */
+}
+
+@keyframes blink-border {
+  0% {
+    color:white;
+    border-color: white;
+  }
+  50% {
+    color:yellow;
+    border-color: yellow;
+  }
+  100% {
+    color:white;
+    border-color: white;
+  }
+}
+
+@keyframes float1 {
+  0% {
+    top: 0px;
+    opacity: 0;
+  }
+  100% {
+    top: 0; /* フロートさせる高さ */
+    opacity: 1; /* 最終的に不透明にする */
+  }
+}
+
+@keyframes rotateY {
+  0% {
+    transform: rotateY(0deg);  /* 初期状態 */
+  }
+  50% {
+    transform: rotateY(180deg);  /* 180度回転 */
+  }
+  100% {
+    transform: rotateY(360deg);  /* 360度回転 */
+  }
+}
+
+.download-container {
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  position:absolute;
+  bottom:100px;
+}
+
+.download-bar {
+  background-color: #ddd;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: red;
+  height: 100%;
+  width: 0%; /* 初期状態では0% */
+  transition: width 0.2s ease-in-out; /* スムーズに進捗を変える */
+  border-radius: 5px;
+}
+
+.percentage {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#button1 {
+  /* 背景色を変更 */
+  background-color: #4CAF50; /* 緑色 */
+  
+  /* テキストの色を変更 */
+  color: white;  /* テキストカラーを白に */
+  
+  /* フォントサイズ、フォントの変更 */
+  font-size: 18px;  /* フォントサイズを18pxに */
+  font-family: 'Arial', sans-serif;  /* フォントをArialに設定 */
+  font-weight: bold;  /* 太字にする */
+  
+  /* パディングとマージンを調整 */
+  padding: 15px 32px;  /* 上下15px、左右32pxの内側の余白 */
+  margin: 20px;  /* 外側の余白を20pxに */
+  
+  /* ボーダーの設定 */
+  border: none;  /* ボーダーなし */
+  border-radius: 12px;  /* 角を丸くする */
+  
+  /* 配置を中央に */
+  display: block;  /* インラインブロック要素にする */
+  margin-left: auto;
+  margin-right: auto;  /* 水平方向に中央揃え */
+  margin-top: 60px;
+  
+  /* ボタンが押されたときのエフェクト */
+  cursor: pointer;  /* マウスカーソルを指にする */
+  transition: background-color 0.3s ease, transform 0.1s ease;  /* 背景色と拡大・縮小をスムーズに */
+}
+
+/* ホバー時の効果 */
+#button1:hover {
+  background-color: #45a049;  /* 少し濃い緑に変更 */
+  transform: scale(1.05);  /* 少し大きくする */
+}
+
+/* クリック時の効果 */
+#button1:active {
+  background-color: #3e8e41;  /* さらに濃い緑に */
+  transform: scale(0.98);  /* 少し縮小する */
+}
+
+.setsumei p {
+  text-align: left;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px; /* 下から20px */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7); /* 半透明の黒背景 */
+  padding: 10px;
+  border-radius: 5px;
+}
