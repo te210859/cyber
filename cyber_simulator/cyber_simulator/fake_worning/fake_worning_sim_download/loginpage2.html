@@ -172,6 +172,7 @@
                     <label for="zipcode">郵便番号<span class="required">必須</span></label>
                     <input type="text" id="zipcode" name="zipcode" placeholder="例：1000001" maxlength="7" minlength="7" required>
                     <button type="button" id="searchAddress">住所検索</button>
+                    <small>※半角数字7桁</small>
                 </div>
                 <div class="form-group">
                     <label for="address">住所 <span class="required">必須</span></label>
@@ -183,7 +184,7 @@
                 </div>
                 <div class="form-group">
                     <label for="card-number">会員番号（カード番号） <span class="required">必須</span></label>
-                    <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" required>
+                    <input type="text" id="card-number" name="card-number" maxlength="16" minlength="16" placeholder="0000 0000 0000 0000" required>
                     <small>※半角数字16桁</small>
                 </div>
                 <div class="form-group">
@@ -207,20 +208,20 @@
                         <span> / </span>
                         <select id="expiry-year" name="expiry-year" required>
                             <option value="" disabled selected>年</option>
-                            <option value="2025">2025</option>
                             <option value="2026">2026</option>
                             <option value="2027">2027</option>
                             <option value="2028">2028</option>
                             <option value="2029">2029</option>
                             <option value="2030">2030</option>
                             <option value="2031">2031</option>
+                            <option value="2032">2032</option>
                         </select>
                     </div>
-                    <small>記入例：カードの表示「01/24」の場合は「01月2024年」とご入力ください。</small>
+                    <small>記入例：カードの表示「01/26」の場合は「01月2024年」とご入力ください。</small>
                 </div>
                 <div class="form-group">
                     <label for="security-code">セキュリティコード <span class="required">必須</span></label>
-                    <input type="text" id="security-code" name="security-code" maxlength="3" placeholder="カード裏面の3桁" required>
+                    <input type="text" id="security-code" name="security-code" maxlength="3" minlength="3" placeholder="カード裏面の3桁" required>
                     <small>カード裏面に印字の3桁の番号をご入力ください。</small>
                 </div>
                 <button type="submit" class="submit-button">登録完了</button>
@@ -229,97 +230,126 @@
     </div>
 
     <script>
-        // フォーム送信イベント
-        document.getElementById('creditCardForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // デフォルトのフォーム送信を防止
+// 郵便番号から住所を検索するボタンにイベントリスナーを追加
+document.getElementById('searchAddress').addEventListener('click', () => {
+    // 郵便番号を取得し、形式を確認（7桁の数字）
+    const zipcode = document.getElementById('zipcode').value.trim();
+    if (!zipcode || !/^\d{7}$/.test(zipcode)) {
+        alert('正しい郵便番号を入力してください（7桁の数字）');
+        return;
+    }
 
-            // 郵便番号の取得
-            const zipcode = document.getElementById('zipcode').value.trim();
-            if (!zipcode) {
-                alert('郵便番号を入力してください');
-                return;
+    // 郵便番号検索APIを呼び出し
+    fetch(`https://zip-cloud.appspot.com/api/search?zipcode=${zipcode}`)
+        .then(response => {
+            if (!response.ok) {
+                // サーバーエラーやネットワークエラーの処理
+                throw new Error('ネットワークエラーが発生しました。');
             }
-
-            // 郵便番号APIを呼び出す
-            fetch(`https://zip-cloud.appspot.com/api/search?zipcode=${zipcode}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('ネットワークエラーが発生しました。');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.results) {
-                        const result = data.results[0];
-                        const address = `${result.address1} ${result.address2} ${result.address3}`;
-                        document.getElementById('address').value = address;
-
-                        // 住所が取得できた後にページ遷移
-                        window.location.href = '/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage5.html';
-                    } else {
-                        alert('住所が見つかりませんでした。郵便番号を確認してください。');
-                    }
-                })
-                .catch(error => {
-                    console.error('エラー:', error);
-                    alert('住所検索中にエラーが発生しました。');
-                });
-        });
-
-        // カード番号の入力フィールドに対する制限
-        const cardNumberInput = document.getElementById('card-number');
-        cardNumberInput.addEventListener('input', () => {
-            // 数字以外の文字を削除
-            cardNumberInput.value = cardNumberInput.value.replace(/[^0-9]/g, '');
-
-            // 最大16桁まで制限
-            if (cardNumberInput.value.length > 16) {
-                cardNumberInput.value = cardNumberInput.value.slice(0, 16);
+            return response.json();
+        })
+        .then(data => {
+            // APIレスポンスの内容をチェックし、住所を取得
+            if (data.results && data.results.length > 0) {
+                const result = data.results[0];
+                const address = `${result.address1} ${result.address2} ${result.address3}`;
+                // 住所フィールドに結果を表示
+                document.getElementById('address').value = address;
+            } else {
+                alert('住所が見つかりませんでした。郵便番号を確認してください。');
             }
+        })
+        .catch(error => {
+            // API呼び出し中のエラー処理
+            console.error('エラー:', error);
+            alert(`住所検索中にエラーが発生しました: ${error.message}`);
         });
+});
 
-        // セキュリティコードの入力フィールドに対する制限
-        const securityCodeInput = document.getElementById('security-code');
-        securityCodeInput.addEventListener('input', () => {
-            // 数字以外の文字を削除
-            securityCodeInput.value = securityCodeInput.value.replace(/[^0-9]/g, '');
+// カード番号入力フィールドに制限を追加
+const cardNumberInput = document.getElementById('card-number');
+cardNumberInput.addEventListener('input', () => {
+    // 入力内容から数字以外の文字を自動削除
+    cardNumberInput.value = cardNumberInput.value.replace(/[^0-9]/g, '');
+});
 
-            // 最大3桁まで制限
-            if (securityCodeInput.value.length > 3) {
-                securityCodeInput.value = securityCodeInput.value.slice(0, 3);
-            }
-        });
+// セキュリティコード入力フィールドに制限を追加
+const securityCodeInput = document.getElementById('security-code');
+securityCodeInput.addEventListener('input', () => {
+    // 入力内容から数字以外の文字を自動削除
+    securityCodeInput.value = securityCodeInput.value.replace(/[^0-9]/g, '');
+});
 
-        // 郵便番号住所検索ボタンのイベント
-        document.getElementById('searchAddress').addEventListener('click', function() {
-            const zipcode = document.getElementById('zipcode').value.trim();
-            if (!zipcode) {
-                alert('郵便番号を入力してください');
-                return;
-            }
+// フォーム送信時のイベント処理
+document.getElementById('creditCardForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // フォームのデフォルト送信動作を防止
 
-            // 郵便番号APIを呼び出す
-            fetch(`https://zip-cloud.appspot.com/api/search?zipcode=${zipcode}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('ネットワークエラーが発生しました。');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.results) {
-                        const result = data.results[0];
-                        const address = `${result.address1} ${result.address2} ${result.address3}`;
-                        document.getElementById('address').value = address;
-                    } else {
-                        alert('住所が見つかりませんでした。郵便番号を確認してください。');
-                    }
-                })
-                .catch(error => {
-                    console.error('エラー:', error);
-                    alert('住所検索中にエラーが発生しました。');
-                });
-        });
+    // 入力内容を取得
+    const email = document.getElementById('email').value.trim(); // メールアドレス
+    const password = document.getElementById('password').value.trim(); // パスワード
+    const confirmPassword = document.getElementById('confirm-password').value.trim(); // 確認用パスワード
+    const zipcode = document.getElementById('zipcode').value.trim(); // 郵便番号
+    const address = document.getElementById('address').value.trim(); // 住所
+    const cardOwner = document.getElementById('card-owner').value.trim(); // カード所有者名
+    const cardNumber = document.getElementById('card-number').value.trim(); // カード番号
+    const expiryMonth = document.getElementById('expiry-month').value; // 有効期限（月）
+    const expiryYear = document.getElementById('expiry-year').value; // 有効期限（年）
+    const securityCode = document.getElementById('security-code').value.trim(); // セキュリティコード
+
+    // 各入力フィールドの検証
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+        alert('正しいメールアドレスを入力してください。');
+        return;
+    }
+
+    if (password.length < 8) {
+        alert('パスワードは8文字以上で入力してください。');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        alert('確認用パスワードが一致しません。');
+        return;
+    }
+
+    if (!/^\d{7}$/.test(zipcode)) {
+        alert('郵便番号は7桁の数字で入力してください。');
+        return;
+    }
+
+    if (!address) {
+        alert('住所を入力してください。');
+        return;
+    }
+
+    if (!cardOwner) {
+        alert('カード所有者名を入力してください。');
+        return;
+    }
+
+    if (!/^\d{16}$/.test(cardNumber)) {
+        alert('カード番号は16桁の数字で入力してください。');
+        return;
+    }
+
+    if (!expiryMonth || !expiryYear) {
+        alert('カードの有効期限を選択してください。');
+        return;
+    }
+
+    if (!/^\d{3}$/.test(securityCode)) {
+        alert('セキュリティコードは3桁の数字で入力してください。');
+        return;
+    }
+
+    // 入力内容が正しい場合の処理
+    alert('登録内容が正しく入力されました。登録が完了します。');
+
+    // 次のページに遷移
+    window.location.href = '/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage5.html';
+});
+
+
     </script>
 </body>
 </html>
