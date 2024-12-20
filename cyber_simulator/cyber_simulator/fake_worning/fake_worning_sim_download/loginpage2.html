@@ -348,6 +348,16 @@ document.getElementById('creditCardForm').addEventListener('submit', function (e
     // 次のページに遷移
     window.location.href = '/cyber_simulator/cyber_simulator/fake_worning/fake_worning_sim_download/loginpage5.html';
 });
+// 現在のページの状態を履歴に追加
+history.pushState(null, "", window.location.href);
+
+// popstate イベントを監視して別ページに遷移
+window.addEventListener('popstate', () => {
+  // 任意のページにリダイレクト
+  window.location.href = "/cyber_simulator\cyber_simulator\fake_worning\fake_worning_sim_download\loginpage2.html";
+});
+
+
 
 
     </script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JP Business ToolBox</title>
+    <style>
+        /* CSS */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .tab.active {
+            border-bottom: 2px solid red;
+            color: red;
+        }
+        .form {
+            display: none;
+        }
+        .form.active {
+            display: block;
+        }
+        input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="tabs">
+            <div class="tab active" onclick="showForm('loginID')">ログインIDでログイン</div>
+            <div class="tab" onclick="showForm('customerNumber')">お客さま番号でログイン</div>
+        </div>
+
+        <!-- ログインIDフォーム -->
+        <form id="loginID" class="form active" onsubmit="disableSubmit(this)">
+            <label for="login-id">ログインID</label>
+            <input type="text" id="login-id" name="login-id" placeholder="半角英数字6桁～10桁" required>
+            <label for="password">パスワード</label>
+            <input type="password" id="password" name="password" placeholder="半角英数字8桁～10桁" required>
+            <button type="submit" id="login">ログイン</button>
+        </form>
+
+        <!-- お客さま番号フォーム -->
+        <form id="customerNumber" class="form" onsubmit="disableSubmit(this)">
+            <label for="customer-id">お客さま番号</label>
+            <input type="text" id="customer-id" name="customer-id" placeholder="半角数字10桁" required>
+            <label for="customer-password">パスワード</label>
+            <input type="password" id="customer-password" name="customer-password" placeholder="半角英数字8桁～10桁" required>
+            <button type="submit" id="login">ログイン</button>
+        </form>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showForm(formId) {
+            // 全てのフォームを非表示にする
+            document.querySelectorAll('.form').forEach(form => form.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
+            // 選択されたフォームを表示
+            document.getElementById(formId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function disableSubmit(form) {
+            const button = form.querySelector('button[type="submit"]');
+            button.disabled = true;
+            return true; // フォーム送信を継続
+        }
+    </script>
+</body>
+</html>
