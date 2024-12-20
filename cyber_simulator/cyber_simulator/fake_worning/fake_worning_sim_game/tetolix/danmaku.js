@@ -94,7 +94,7 @@ class Fighter extends SpriteActor {
 
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(16, 16, 16, 16));
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 32, 16, 16));
         const hitArea = new Rectangle(4, 4, 8, 8);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -112,18 +112,41 @@ class EnemyBullet extends SpriteActor {
     }
 }
 
+class EnemyBullet2 extends SpriteActor {
+    constructor(x, y, velocityX, velocityY) {
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 32, 16, 16));
+        super(x, y, sprite, null, ['enemyBullet']); // hitArea を null に設定
+
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+    }
+
+    update(gameInfo, input) {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+    }
+}
+
+
 class Enemy extends SpriteActor {
     constructor(x, y) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(16, 0, 128, 128));
-        const hitArea = new Rectangle(0, 0, 16, 16);
+        const hitArea = new Rectangle(16, 0, 128, 128);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 50;
+        this.maxHp = 150;
         this.currentHp = this.maxHp;
 
         this._interval = 120;
         this._timeCount = 0;
         this._velocityX = 0.3;
+        //this.velocityY = velocityY;
+        //this.duration = duration; // 持続時間
+        //this.timeAlive = 0; // 現在の生存時間
 
         // プレイヤーの弾に当たったらHPを減らす
         this.addEventListener('hit', (e) => {
@@ -144,6 +167,34 @@ class Enemy extends SpriteActor {
         this.spawnActor(bullet);
     }
 
+
+    // ジグザグ軌道の弾を発射する
+    shootZigzagBullet(degree, speed, amplitude, frequency) {
+    const rad = degree / 180 * Math.PI;
+    const baseVelocityX = Math.cos(rad) * speed;
+    const baseVelocityY = Math.sin(rad) * speed;
+    let time = 0;
+
+    const bullet = new EnemyBullet(this.x, this.y, baseVelocityX, baseVelocityY);
+    bullet.update = function() {
+        time += 1;
+        this.x += this.velocityX;
+        this.y += this.velocityY + Math.sin(time * frequency) * amplitude;
+    };
+    this.spawnActor(bullet);
+    }
+
+    // degree度の方向にspeedの速さで、2秒間持続するレーザーを発射する
+    shootLaser(degree, speed) {
+        const rad = degree / 180 * Math.PI;
+        const velocityX = Math.cos(rad) * speed;
+        const velocityY = Math.sin(rad) * speed;
+    
+        const laser = new Laser(this.x, this.y, velocityX, velocityY, 2); // 2秒の持続時間
+        this.spawnActor(laser);
+    }
+
+
     // num個の弾を円形に発射する
     shootCircularBullets(num, speed) {
         const degree = 360 / num;
@@ -158,7 +209,39 @@ class Enemy extends SpriteActor {
         this.spawnActor(bullet);
     }
     
+    // 吹き出しを表示するメソッド
+showSpeechBubble(comment) {
+    // 吹き出しの要素を作成
+    const bubble = document.createElement("div");
+    bubble.textContent = comment;
+
+    // 吹き出しの位置を画面中央上部に固定
+    bubble.style.position = "absolute";
+    bubble.style.left = "50%"; // 水平方向で中央
+    bubble.style.top = "300px"; // 画面上部の余白
+    bubble.style.transform = "translateX(-50%)"; // 中央揃え
+    bubble.style.zIndex = "1000"; // 他の要素より前面に表示
+
+    // 吹き出しのドット風デザイン
+    bubble.style.padding = "30px";
+    bubble.style.backgroundColor = "black"; // 吹き出し背景色
+    bubble.style.color = "red"; // テキスト色
+    bubble.style.border = "2px solid white"; // ドット枠
+    bubble.style.borderRadius = "4px"; // 四角に近い形
+    bubble.style.fontSize = "16px"; // ドット風の文字サイズ
+    bubble.style.fontFamily = "'Press Start 2P', monospace"; // ドット風フォント
+    bubble.style.boxShadow = "2px 2px 0px white"; // ドット風の影
+    bubble.style.whiteSpace = "nowrap"; // テキスト折り返しなし
+
+    // 吹き出しを画面に追加
+    document.body.appendChild(bubble);
+        // 吹き出しを数秒後に削除
+    setTimeout(() => {
+            document.body.removeChild(bubble);
+        }, 3000); // 3秒後に吹き出しを消す
+    }   
     update(gameInfo, input) {
+        
         // インターバルを経過していたら弾を撃つ
         this._timeCount++;
         if (this._timeCount > this._interval) {
@@ -190,6 +273,71 @@ class Enemy extends SpriteActor {
         this.x += this._velocityX;
         if (this.x <= 100 || this.x >= 500) {
             this._velocityX *= -2;
+        }
+         // HPが150以下になったときに吹き出しを表示
+        if (this.currentHp <= 150 && !this.commentDisplayed150) {
+            this.showSpeechBubble("まだまだ終わらないぞ！");
+            this.commentDisplayed150 = true;
+        }
+
+        // HPが50以下になったときに吹き出しを表示
+        if (this.currentHp <= 50 && !this.commentDisplayed50) {
+            this.showSpeechBubble("これで最後だ！");
+            this.commentDisplayed50 = true;
+        }
+        /*
+        // HPが50以下になったときに吹き出しを表示
+        if (this.currentHp <= 150 && this.commentDisplayed50 && this.commentDisplayed150) {
+            this.showSpeechBubble("ふっかつ");
+            this.commentDisplayed1 = true;
+        }*/
+
+        if(this.currentHp == 148 /*&&  !this.hasUpdated*/) {
+            //　角度、弾速、振れ幅、揺れる速度
+            const baseAngle = 90; // 中心の角度
+            const angleSpread = 30; // 角度の広がり
+            const speeds = [5, 7, 10, 12]; // 弾の速度リスト
+            const amplitude = 10; // 振れ幅
+            const frequency = 5.5; // 揺れる速度
+
+            // 複数の速度で弾を発射
+            speeds.forEach(speed => {
+            for (let i = -angleSpread; i <= angleSpread; i += 5) { // 角度を5度刻みで増やす
+                const angle = baseAngle + i;
+                this.shootZigzagBullet(angle, speed, amplitude, frequency);
+            }
+        })
+        
+            this.shootLaser(85,100);
+        
+        ;
+
+            //this.hasUpdated = true;
+            this.currentHp = this.currentHp - 1;
+        }
+
+        if(this.currentHp == 45 /*&&  !this.hasUpdated*/) {
+            //　角度、弾速、振れ幅、揺れる速度
+            const baseAngle = 90; // 中心の角度
+            const angleSpread = 80; // 角度の広がり
+            const speeds = [1, 3, 5, 7]; // 弾の速度リスト
+            const amplitude = 10; // 振れ幅
+            const frequency = 5.5; // 揺れる速度
+
+            // 複数の速度で弾を発射
+            speeds.forEach(speed => {
+            for (let i = -angleSpread; i <= angleSpread; i += 5) { // 角度を5度刻みで増やす
+                const angle = baseAngle + i;
+                this.shootZigzagBullet(angle, speed, amplitude, frequency);
+            }
+        });
+
+            //this.hasUpdated = true;
+            this.currentHp = this.currentHp - 1;
+        }
+        if(this.currentHp == 1 && !this.hasupdated){
+            this.currentHp = 150;
+            this.hasupdated = true;
         }
     
         // HPがゼロになったらdestroyする
@@ -267,8 +415,8 @@ class DanmakuStgMainScene extends Scene {
 
             // ゲームオーバー後に指定されたURLに遷移（例: png/boss.jpg）
             setTimeout(() => {
-            window.location.href = 'png/boss.jpg';  // 2秒後に png/boss.jpg に遷移
-            }, 3000);  // 2秒後にURL遷移
+            window.location.href = '../../fake_worning_sim/fake_worning_sim.html';  // 2秒後に png/boss.jpg に遷移
+            }, 2000);  // 2秒後にURL遷移
         });
 
         // 敵がやられたらクリア画面にする
@@ -279,8 +427,8 @@ class DanmakuStgMainScene extends Scene {
 
             // ゲームオーバー後に指定されたURLに遷移（例: png/boss.jpg）
             setTimeout(() => {
-                window.location.href = 'png/boss.jpg';  // 2秒後に png/boss.jpg に遷移
-                }, 3000);  // 2秒後にURL遷移
+                window.location.href = '../../fake_worning_sim/fake_worning_sim.html';  // 2秒後に png/boss.jpg に遷移
+                }, 2000);  // 2秒後にURL遷移
 
         });
     }
@@ -313,7 +461,7 @@ class DanamkuStgGame extends Game {
     }
 }
 
-assets.addImage('sprite', 'sprite3.png');
+assets.addImage('sprite', 'sprite_last.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
     document.body.appendChild(game.screenCanvas);
