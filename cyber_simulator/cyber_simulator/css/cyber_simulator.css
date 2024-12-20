@@ -1,19 +1,43 @@
 @charset "UTF-8";
 
 html,body {
+    height: 100%;
+    margin: 0;
     overflow: hidden;
-  }
+}
+
+body{
+    vertical-align:middle; 
+    text-align: center;
+    background-color: #818FCF;
+}
+
+.container{
+    background-color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;  /* 必要に応じて調整 */
+    height: 95%;  /* 必要に応じて調整 */
+    display: flex;
+    flex-direction: column; /* 子要素を縦に並べる */
+    padding-bottom: 50px; /* フッター分の余白を確保 */
+    box-sizing: border-box;
+}
+
 /*ヘッダー*/
 .header{
-    text-align: center
+    text-align: center;
 }
-/*ヘッダーここまで*/
 h1 {
     font-size: 4em;
-    font-family: "Klee One", cursive;
-    font-weight: 600;
+    font-family: "DotGothic16", serif;
+    font-weight: 400;
     font-style: normal;
 }
+/*ヘッダーここまで*/
+
 /*ボタン*/
 .button a {
     background: #eee;
@@ -57,12 +81,6 @@ h1 {
 .button a:hover:after {
     border-color: #FFF;
 }
-body{
-    vertical-align:middle; 
-    padding: 50px 0;
-    text-align: center;
-}
-/*ボタンここまで*/
 
 /* プレビュー内容を隠す */
 .preview {
@@ -90,4 +108,34 @@ body{
 .preview h4 {
     font-size: 16px;
     margin-bottom: 10px;
+}
+
+/* フッターのスタイル */
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 画像のスタイル */
+.image {
+    width: 100px; /* 必要に応じて画像のサイズを調整 */
+    height: auto;
+    display: none; /* 初期状態では非表示 */
+}
+
+/* 最初の画像を表示 */
+.image:nth-child(1) {
+    display: block;
 }
