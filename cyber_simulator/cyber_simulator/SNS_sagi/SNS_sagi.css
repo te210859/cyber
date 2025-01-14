@@ -48,6 +48,7 @@ h1 {
     align-items: center;
     margin: 0 auto;
     max-width: 250px;
+    height: 96px;
     padding: 10px 25px;
     color: #333333;
     line-height: 4;
@@ -85,11 +86,11 @@ h1 {
 /* プレビュー内容を隠す */
 .preview {
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 50%; /* ボタンの右に表示 */
     margin-left: 170px; /* ボタンとの間隔 */
     width: 250px;
-    height: 560px;
+    height: 360px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     display: none;
@@ -138,4 +139,43 @@ h1 {
 /* 最初の画像を表示 */
 .image:nth-child(1) {
     display: block;
+}
+
+.back-button{
+    display: flex;
+    justify-content: center; /* ボタンを中央揃え */
+    gap: 20px; /* ボタン間の間隔を調整 */
+    margin-top: 20px; /* 上部に少し余白を追加 */
+}
+
+.button1 a {
+    background: #eee;
+    border-radius: 9999px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 250px;
+    padding: 10px 25px;
+    color: #333333;
+    line-height: 4;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    font-size: 1.2em;
+    font-family: "Klee One", cursive;
+    font-weight: 600;
+    font-style: normal;
+}
+.button1 a:hover {
+    background: #333333;
+    color: #FFF;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgb(0 0 0 / 30%), 0 0 5px rgb(0 0 0 / 30%);
+}
+
+.button1 i {
+    font-size: 30px; /* アイコンサイズ */
+    margin-right: 10px; /* アイコンとテキストの間に少しスペース */
 }
