@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>パスワード強度メーター（zxcvbn.js）</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/zxcvbn.js"></script>
+</head>
+<body>
+<div class="body">
+<div class="container">
+  <div class="input-password">
+
+    <div id="user-id-wrapper">
+      <label for="user-id">ID：</label>
+      <input id="user-id"  maxlength="30"            placeholder="ユーザーID" value="yamada"/>
+    </div>
+
+    <div id="password-wrapper">
+      <div>
+        <img src="img/meter99.svg" alt="パスワード強度メーター（デフォルト）" id="password-meter"/>
+      </div>
+      <div id="input-password-wrapper">
+        <label for="input-password">パスワード：</label>
+        <input id="input-password" maxlength="30"            placeholder="パスワードを入力(30字以内)" value="abcdefg"/>
+        <div>
+          <p id="password-msg"></p>
+        </div>
+      </div>
+    </div>
+
+
+    <table class="result">
+      <tr>
+        <td class="n">推測回数:</td>
+        <td id="guesses"></td>
+      </tr>
+      <tr>
+        <td class="n">推測回数の対数:</td>
+        <td id="guesses_log10"></td>
+      </tr>
+      <tr>
+        <td class="n">クラック時間(専門向け)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オンライン制限あり</td>
+        <td id="online_throttling_100_per_hour"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オンライン制限なし</td>
+        <td id="online_no_throttling_10_per_second"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オフライン低速ハッシュ</td>
+        <td id="offline_slow_hashing_1e4_per_second"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オフライン高速ハッシュ</td>
+        <td id="offline_fast_hashing_1e10_per_second"></td>
+      </tr>
+      <tr>
+        <td class="n">}</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="n">クラック時間(一般向け)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オンライン制限あり</td>
+        <td id="crack_times_display_online_throttling_100_per_hour"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オンライン制限なし</td>
+        <td id="crack_times_display_online_no_throttling_10_per_second"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オフライン低速ハッシュ</td>
+        <td id="crack_times_display_offline_slow_hashing_1e4_per_second"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・オフライン高速ハッシュ</td>
+        <td id="crack_times_display_offline_fast_hashing_1e10_per_second"></td>
+      </tr>
+      <tr>
+        <td class="n">}</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td class="n score">強度のスコア(4点満点)</td>
+        <td id="score" class="score"></td>
+      </tr>
+
+      <tr>
+        <td class="n">フィードバック</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・警告</td>
+        <td id="feedback_warning"></td>
+      </tr>
+      <tr>
+        <td class="n">&nbsp;&nbsp;・提案</td>
+        <td id="feedback_suggestions"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<div class="buttons-wrapper">
+  <a href="Explanation.html"target="_blank"><button id="submit-btn">クラック時間の解説</button></a>
+  <a href="https://www.ipa.go.jp/security/anshin/attention/2016/mgdayori20160803.html"target="_blank"><button id="reset-btn" >パスワード作成手順</button></a>
+</div>
+
+
+<script type="text/javascript">
+
+  const detect_password = () => {
+    let user_id = document.getElementById("user-id").value;
+
+    // zxcvbn判定
+    const result = zxcvbn(document.getElementById("input-password").value, [user_id,]);
+
+    document.getElementById("guesses").innerText = result.guesses;
+    document.getElementById("guesses_log10").innerText = result.guesses_log10;
+
+    // result.crack_times_seconds
+    document.getElementById("online_throttling_100_per_hour").innerText = result.crack_times_seconds["online_throttling_100_per_hour"];
+    document.getElementById("online_no_throttling_10_per_second").innerText = result.crack_times_seconds["online_no_throttling_10_per_second"];
+    document.getElementById("offline_slow_hashing_1e4_per_second").innerText = result.crack_times_seconds["offline_slow_hashing_1e4_per_second"];
+    document.getElementById("offline_fast_hashing_1e10_per_second").innerText = result.crack_times_seconds["offline_fast_hashing_1e10_per_second"];
+
+    // result.crack_times_display
+    document.getElementById("crack_times_display_online_throttling_100_per_hour").innerText = result.crack_times_display["online_throttling_100_per_hour"];
+    document.getElementById("crack_times_display_online_no_throttling_10_per_second").innerText = result.crack_times_display["online_no_throttling_10_per_second"];
+    document.getElementById("crack_times_display_offline_slow_hashing_1e4_per_second").innerText = result.crack_times_display["offline_slow_hashing_1e4_per_second"];
+    document.getElementById("crack_times_display_offline_fast_hashing_1e10_per_second").innerText = result.crack_times_display["offline_fast_hashing_1e10_per_second"];
+
+    // スコア
+    document.getElementById("score").innerText = result.score;
+
+    let img = document.getElementById("password-meter");
+    let msg = document.getElementById("password-msg");
+    let filename = "";
+    switch (result.score) {
+      case 0:
+        filename = "img/meter00.svg";
+        msg.innerText = "too guessable（かなり推測しやすい）";
+        msg.style.color = "#ff0000";
+        break;
+      case 1:
+        filename = "img/meter01.svg";
+        msg.innerText = "very guessable（とても推測しやすい）";
+        msg.style.color = "#ff8000";
+        break;
+      case 2:
+        filename = "img/meter02.svg";
+        msg.innerText = "somewhat guessable（やや推測しやすい）"
+        msg.style.color = "#fdb514";
+        break;
+      case 3:
+        filename = "img/meter03.svg";
+        msg.innerText = "safely unguessable（安全で推測しにくい）"
+        msg.style.color = "#00e600";
+        break;
+      case 4:
+        filename = "img/meter04.svg";
+        msg.innerText = "very unguessable（とても推測しにくい）"
+        msg.style.color = "#009900";
+        break;
+      default:
+        filename = "img/meter99.svg";
+        msg.innerText = "";
+        break;
+    }
+    img.src = filename + "?" + Date().now;
+
+    // result.feedback.warning
+    document.getElementById("feedback_warning").innerText = result.feedback.warning;
+    document.getElementById("feedback_suggestions").innerHTML = "<pre>" + result.feedback.suggestions.join('\n') + "</pre>";
+    document.getElementById("sequence").innerHTML = "<pre>" + JSON.stringify(result.sequence, null, 2) + "</pre>";
+    document.getElementById("calc_time").innerText = result.calc_time;
+  };
+
+  document.getElementById("input-password").addEventListener('keyup', () => {
+    detect_password();
+  });
+
+  detect_password();
+
+</script>
+
+</body>
+</html>

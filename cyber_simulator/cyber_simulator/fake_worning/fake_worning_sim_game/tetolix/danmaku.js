@@ -144,7 +144,7 @@ class Enemy extends SpriteActor {
         this._interval = 120;
         this._timeCount = 0;
         this._velocityX = 0.3;
-        //this.velocityY = velocityY;
+        //this.velocityY = 0.3;
         //this.duration = duration; // 持続時間
         //this.timeAlive = 0; // 現在の生存時間
 
@@ -167,6 +167,10 @@ class Enemy extends SpriteActor {
         this.spawnActor(bullet);
     }
 
+    
+    
+
+
 
     // ジグザグ軌道の弾を発射する
     shootZigzagBullet(degree, speed, amplitude, frequency) {
@@ -184,16 +188,6 @@ class Enemy extends SpriteActor {
     this.spawnActor(bullet);
     }
 
-    // degree度の方向にspeedの速さで、2秒間持続するレーザーを発射する
-    shootLaser(degree, speed) {
-        const rad = degree / 180 * Math.PI;
-        const velocityX = Math.cos(rad) * speed;
-        const velocityY = Math.sin(rad) * speed;
-    
-        const laser = new Laser(this.x, this.y, velocityX, velocityY, 2); // 2秒の持続時間
-        this.spawnActor(laser);
-    }
-
 
     // num個の弾を円形に発射する
     shootCircularBullets(num, speed) {
@@ -208,9 +202,18 @@ class Enemy extends SpriteActor {
         const bullet = new HomingBullet(this.x, this.y, 0, -1, target);
         this.spawnActor(bullet);
     }
+    // レーザー
+    razerBullet(degree, speed) {
+        const rad = degree / 180 * Math.PI;
+        const velocityX = Math.cos(rad) * speed;
+        const velocityY = Math.sin(rad) * speed;
+        
+        const bullet = new EnemyBullet(this.x, this.y, velocityX, velocityY);
+        this.spawnActor(bullet);
+    }
     
     // 吹き出しを表示するメソッド
-showSpeechBubble(comment) {
+    showSpeechBubble(comment) {
     // 吹き出しの要素を作成
     const bubble = document.createElement("div");
     bubble.textContent = comment;
@@ -274,6 +277,10 @@ showSpeechBubble(comment) {
         if (this.x <= 100 || this.x >= 500) {
             this._velocityX *= -2;
         }
+        /*this.y += this._velocityY;
+        if (this.y <= 100 || this.y >= 500) {
+            this._velocityY *= -2;
+        }*/
          // HPが150以下になったときに吹き出しを表示
         if (this.currentHp <= 150 && !this.commentDisplayed150) {
             this.showSpeechBubble("まだまだ終わらないぞ！");
@@ -308,7 +315,7 @@ showSpeechBubble(comment) {
             }
         })
         
-            this.shootLaser(85,100);
+            //this.shootLaser(85,100);
         
         ;
 
